@@ -2,24 +2,25 @@
 
 ## Status
 
-Local GitHub Pages preparation is complete. Repository creation, push, Pages activation and DNS changes remain blocked pending valid GitHub authentication and explicit owner approval.
+The sanitized public repository, `main` branch and GitHub Pages workflow are active. The temporary Pages deployment was verified before the custom domain was configured. GitHub now recognizes `thartextiles.co`; Namecheap website-record changes and subsequent HTTPS validation remain pending owner action.
 
-| Item                       | Status                                         |
-| -------------------------- | ---------------------------------------------- |
-| GitHub repository          | Pending; intended name `thar-textiles-website` |
-| Repository visibility      | Owner confirmation required                    |
-| GitHub repository URL      | Pending                                        |
-| GitHub Pages temporary URL | Pending authenticated GitHub username          |
-| Production URL             | `https://thartextiles.co`                      |
-| Pages source               | GitHub Actions, to be enabled after push       |
+| Item                       | Status                                              |
+| -------------------------- | --------------------------------------------------- |
+| GitHub repository          | `djhirani/thar-textiles-website`                    |
+| Repository visibility      | Public                                              |
+| GitHub repository URL      | `https://github.com/djhirani/thar-textiles-website` |
+| GitHub Pages temporary URL | `https://djhirani.github.io/thar-textiles-website/` |
+| Production URL             | `https://thartextiles.co`                           |
+| Pages source               | GitHub Actions                                      |
 
-Current GitHub CLI state:
+Current GitHub state:
 
-- stored active account: `djhirani`;
-- authentication: invalid token, so the authenticated username cannot be confirmed;
-- secondary stored account: `drbanila`, also invalid;
-- no Git remote is configured;
-- the local repository has no commits and is currently on `build/desert-light-modern-heirlooms`.
+- authenticated owner: `djhirani`;
+- branch: `main`;
+- remote: `https://github.com/djhirani/thar-textiles-website.git`;
+- Pages build type: workflow;
+- custom domain configured in GitHub: `thartextiles.co`;
+- HTTPS enforcement: pending correct DNS and certificate issuance.
 
 ## Public repository scope
 
