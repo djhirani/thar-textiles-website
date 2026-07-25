@@ -27,7 +27,6 @@ export function MobileMenu() {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpen(false);
-        triggerButton.current?.focus();
       }
     };
 
@@ -49,7 +48,18 @@ export function MobileMenu() {
       document.body.style.top = previousBodyStyles.top;
       document.body.style.width = previousBodyStyles.width;
       window.removeEventListener("keydown", onKeyDown);
-      window.scrollTo(0, scrollPosition);
+      const previousScrollBehavior =
+        document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = "auto";
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          window.scrollTo(0, scrollPosition);
+          window.requestAnimationFrame(() => {
+            document.documentElement.style.scrollBehavior =
+              previousScrollBehavior;
+          });
+        });
+      });
     };
   }, [open]);
 
@@ -87,10 +97,7 @@ export function MobileMenu() {
                 ref={closeButton}
                 aria-label="Close menu"
                 className="icon-button"
-                onClick={() => {
-                  setOpen(false);
-                  triggerButton.current?.focus();
-                }}
+                onClick={() => setOpen(false)}
                 type="button"
               >
                 <CloseIcon className="icon" />
