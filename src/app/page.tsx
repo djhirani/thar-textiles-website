@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { products, verifiedBusiness } from "@/lib/content";
+import { enquiryHref, products } from "@/lib/content";
 import { withBasePath } from "@/lib/paths";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { NewsletterForm } from "@/components/newsletter-form";
 import {
   ButtonLink,
   Container,
@@ -77,7 +78,7 @@ export default function Home() {
                 <TextLink href="#women">Meet the women</TextLink>
               </div>
               <p className="asset-note">
-                Product-source imagery. Campaign photography in development.
+                A first look at pieces from the Thar Textiles collection.
               </p>
             </div>
             <div className="hero-visual">
@@ -199,7 +200,9 @@ export default function Home() {
                 eyebrow="Selected from the archive"
                 title="Pieces with presence"
               />
-              <TextLink href="#contact">Ask about availability</TextLink>
+              <TextLink href={enquiryHref("Thar Textiles collection enquiry")}>
+                Ask about availability
+              </TextLink>
             </div>
             <div className="product-grid">
               {products.map((product, index) => (
@@ -207,7 +210,11 @@ export default function Home() {
                   className="product-card"
                   key={`${product.image}-${index}`}
                 >
-                  <a href="#contact">
+                  <a
+                    href={enquiryHref(
+                      `Product enquiry: ${product.title} — ${product.category}`,
+                    )}
+                  >
                     <div className="product-image">
                       <Image
                         alt={product.imageAlt}
@@ -215,7 +222,7 @@ export default function Home() {
                         sizes="(max-width: 639px) 44vw, (max-width: 1023px) 30vw, 22vw"
                         src={product.image}
                       />
-                      <span className="product-state">Archive preview</span>
+                      <span className="product-state">By enquiry</span>
                     </div>
                     <div className="product-info">
                       <div>
@@ -265,7 +272,7 @@ export default function Home() {
               align="center"
               eyebrow="A modern point of view"
               title="Made in the desert. Styled for the city."
-              copy="The styling campaign is the next essential shoot. These compositions establish the intended rhythm without pretending product-source photographs are final editorial assets."
+              copy="Expressive embroidery meets the ease of a modern wardrobe—colourful, individual and designed to be worn your way."
             />
             <div className="styling-grid">
               <article className="style-frame style-frame--one">
@@ -287,7 +294,7 @@ export default function Home() {
                 <span>02 — An expressive layer</span>
               </article>
               <aside className="styling-note">
-                <p>Photography brief</p>
+                <p>Style direction</p>
                 <p>
                   Pair one embroidered piece with denim, tailoring and quiet
                   neutrals. Show movement, scale and ease.
@@ -323,8 +330,8 @@ export default function Home() {
                 <span />
                 <span />
               </div>
-              <p>Founder and artisan portrait commission</p>
-              <span>Required for final publication</span>
+              <p>Three women. One shared direction.</p>
+              <span>Women-founded in Tharparkar</span>
             </div>
           </Container>
         </section>
@@ -402,10 +409,16 @@ export default function Home() {
                 </div>
                 <div>
                   <dt>Maker</dt>
-                  <dd>Attribution pending verification and consent</dd>
+                  <dd>Maker profile coming soon</dd>
                 </div>
               </dl>
-              <TextLink href="#contact">Enquire about the piece</TextLink>
+              <TextLink
+                href={enquiryHref(
+                  "Product enquiry: rectangular textile wall hanging",
+                )}
+              >
+                Enquire about the piece
+              </TextLink>
             </div>
           </Container>
         </section>
@@ -419,12 +432,12 @@ export default function Home() {
             <div
               className="place-landscape"
               role="img"
-              aria-label="Abstract interpretation of the Tharparkar desert awaiting commissioned landscape photography"
+              aria-label="Abstract interpretation of the Tharparkar desert"
             >
               <span className="sun" />
               <span className="dune dune--one" />
               <span className="dune dune--two" />
-              <p>Landscape photography commission pending</p>
+              <p>Tharparkar · Sindh · Pakistan</p>
             </div>
             <div className="place-copy">
               <p className="place-lead">
@@ -500,10 +513,13 @@ export default function Home() {
             </div>
             <p>
               Wholesale, capsule collaborations, cultural partnerships and
-              exhibitions are available by enquiry. International fulfilment is
-              in development and no capacity is implied.
+              exhibitions are available by enquiry. Contact our team to discuss
+              the right route for your project or market.
             </p>
-            <ButtonLink href={`mailto:${verifiedBusiness.email}`} tone="light">
+            <ButtonLink
+              href={enquiryHref("Trade and partnership enquiry")}
+              tone="light"
+            >
               Start a conversation
             </ButtonLink>
           </Container>
@@ -512,7 +528,7 @@ export default function Home() {
         <section className="journal section" id="journal">
           <Container>
             <SectionHeading
-              eyebrow="Journal preview"
+              eyebrow="The journal"
               title="Ways of wearing. Ways of making."
             />
             <div className="journal-grid">
@@ -529,7 +545,7 @@ export default function Home() {
                     <span className="journal-index">0{index + 1}</span>
                     <p className="eyebrow">{category}</p>
                     <h3>{title}</h3>
-                    <p className="draft-label">Editorial commissioning brief</p>
+                    <p className="draft-label">Coming soon</p>
                   </a>
                 </article>
               ))}
@@ -543,23 +559,7 @@ export default function Home() {
               <p className="eyebrow">Letters from Thar</p>
               <h2>New pieces, maker stories and limited drops.</h2>
             </div>
-            <form action="#" className="newsletter-form">
-              <label htmlFor="email">Email address</label>
-              <div>
-                <input
-                  autoComplete="email"
-                  id="email"
-                  name="email"
-                  placeholder="Email address"
-                  type="email"
-                />
-                <button type="submit">Join the list</button>
-              </div>
-              <p>
-                Preview only—submission is not connected until privacy wording
-                and an approved provider are supplied.
-              </p>
-            </form>
+            <NewsletterForm />
           </Container>
         </section>
       </main>

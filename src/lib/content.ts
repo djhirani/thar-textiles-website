@@ -10,20 +10,24 @@ import { withBasePath } from "./paths";
 
 const productRoot = withBasePath("/images/site-products");
 
+export function enquiryHref(subject: string) {
+  return `mailto:hello@thartextiles.co?subject=${encodeURIComponent(subject)}`;
+}
+
 export const products: ProductSource[] = [
   {
     title: "Hand-embroidered kurta",
     category: "Garments",
     image: `${productRoot}/kurta-red.jpeg`,
     imageAlt: "Red hand-embroidered kurta hanging against a pale background",
-    note: "Product details and availability to be confirmed.",
+    note: "Available by personal enquiry.",
   },
   {
     title: "Hand-embroidered kurta",
     category: "Garments",
     image: `${productRoot}/kurta-ochre.jpeg`,
     imageAlt: "Ochre hand-embroidered kurta hanging against a pale background",
-    note: "Product details and availability to be confirmed.",
+    note: "Available by personal enquiry.",
   },
   {
     title: "Embroidered shoulder bag",
@@ -31,7 +35,7 @@ export const products: ProductSource[] = [
     image: `${productRoot}/embroidered-shoulder-bag.jpeg`,
     imageAlt:
       "Rectangular shoulder bag with multicoloured geometric embroidery",
-    note: "Product details and availability to be confirmed.",
+    note: "Available by personal enquiry.",
   },
   {
     title: "Round textile wall hanging",
@@ -39,7 +43,7 @@ export const products: ProductSource[] = [
     image: `${productRoot}/round-wall-hanging.jpeg`,
     imageAlt:
       "Round textile wall hanging assembled from colourful embroidered panels",
-    note: "Product details and availability to be confirmed.",
+    note: "Available by personal enquiry.",
   },
 ];
 

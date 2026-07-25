@@ -1,4 +1,4 @@
-import { navigation } from "@/lib/content";
+import { enquiryHref, navigation } from "@/lib/content";
 import { BrandLockup } from "./brand-lockup";
 import { BagIcon, SearchIcon } from "./icons";
 import { MobileMenu } from "./mobile-menu";
@@ -29,15 +29,14 @@ export function SiteHeader() {
             </ul>
           </nav>
           <div className="header-actions">
-            <a aria-label="Search, coming in a later milestone" href="#shop">
+            <a aria-label="Browse the collection" href="#shop">
               <SearchIcon className="icon" />
             </a>
             <a
-              aria-label="Shopping bag, commerce connection pending"
-              href="#shop"
+              aria-label="Enquire about a piece by email"
+              href={enquiryHref("Thar Textiles product enquiry")}
             >
               <BagIcon className="icon" />
-              <span className="bag-count">0</span>
             </a>
           </div>
         </Container>

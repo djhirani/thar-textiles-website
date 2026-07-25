@@ -29,11 +29,20 @@ export const metadata: Metadata = {
     url: "/",
     locale: "en_GB",
     siteName: verifiedBusiness.brandName,
+    images: [
+      {
+        url: "/images/site-products/embroidered-shoulder-bag.jpeg",
+        width: 1200,
+        height: 1600,
+        alt: "A colourful hand-embroidered Thar Textiles shoulder bag",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${verifiedBusiness.brandName} | ${verifiedBusiness.descriptor}`,
     description: verifiedBusiness.description,
+    images: ["/images/site-products/embroidered-shoulder-bag.jpeg"],
   },
   icons: {
     icon: [
@@ -71,7 +80,16 @@ export default function RootLayout({
     legalName: verifiedBusiness.legalName,
     url: verifiedBusiness.website,
     email: verifiedBusiness.email,
+    telephone: `+${verifiedBusiness.phoneHref}`,
     description: verifiedBusiness.description,
+    logo: `${verifiedBusiness.website}/brand/owner-direction/Logo-reference.png`,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer enquiries",
+      email: verifiedBusiness.email,
+      telephone: `+${verifiedBusiness.phoneHref}`,
+      availableLanguage: ["English"],
+    },
   };
 
   return (

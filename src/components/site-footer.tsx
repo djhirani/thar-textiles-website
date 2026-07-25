@@ -1,23 +1,46 @@
-import { verifiedBusiness } from "@/lib/content";
+import { enquiryHref, verifiedBusiness } from "@/lib/content";
 import { BrandLockup } from "./brand-lockup";
 import { Container, DecorativeStitch } from "./primitives";
 
 const footerGroups = [
   {
     title: "Shop",
-    links: ["New pieces", "Garments", "Bags", "Home textiles"],
+    links: [
+      { label: "New pieces", href: "#new" },
+      { label: "Garments", href: "#shop" },
+      { label: "Bags", href: "#shop" },
+      { label: "Home textiles", href: "#shop" },
+    ],
   },
   {
     title: "Discover",
-    links: ["Our craft", "The women", "Our story", "Impact & research"],
+    links: [
+      { label: "Our craft", href: "#craft" },
+      { label: "The women", href: "#women" },
+      { label: "Our story", href: "#story" },
+      { label: "Impact & research", href: "#impact" },
+    ],
   },
   {
     title: "Help",
-    links: ["Contact", "Sizing", "Shipping & returns", "Care guide"],
+    links: [
+      { label: "Contact", href: `mailto:${verifiedBusiness.email}` },
+      { label: "Sizing", href: enquiryHref("Sizing enquiry") },
+      {
+        label: "Shipping & returns",
+        href: enquiryHref("Shipping and returns enquiry"),
+      },
+      { label: "Care guide", href: enquiryHref("Product care enquiry") },
+    ],
   },
   {
     title: "Trade",
-    links: ["Wholesale", "Collaborations", "Exhibitions", "Press"],
+    links: [
+      { label: "Wholesale", href: enquiryHref("Wholesale enquiry") },
+      { label: "Collaborations", href: enquiryHref("Collaboration enquiry") },
+      { label: "Exhibitions", href: enquiryHref("Exhibition enquiry") },
+      { label: "Press", href: enquiryHref("Press enquiry") },
+    ],
   },
 ];
 
@@ -40,8 +63,8 @@ export function SiteFooter() {
               <h2>{group.title}</h2>
               <ul>
                 {group.links.map((link) => (
-                  <li key={link}>
-                    <a href="#top">{link}</a>
+                  <li key={link.label}>
+                    <a href={link.href}>{link.label}</a>
                   </li>
                 ))}
               </ul>

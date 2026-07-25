@@ -30,6 +30,9 @@ export function BrandLockup({
         unoptimized
         width={1122}
       />
+      {!compact ? (
+        <span className="owner-lockup__tagline">Women Crafting Change</span>
+      ) : null}
     </span>
   );
 }

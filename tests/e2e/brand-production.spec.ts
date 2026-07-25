@@ -7,6 +7,9 @@ test("production header and footer use the owner-supplied identity", async ({
   await page.goto("/");
   await expect(page.locator(".brand-logo__lockup")).toBeVisible();
   await expect(page.locator(".brand-logo__symbol")).toBeHidden();
+  await expect(
+    page.locator(".brand-logo__lockup .owner-lockup__tagline"),
+  ).toHaveText("Women Crafting Change");
   await expect(page.locator(".footer-mark img")).toHaveAttribute(
     "src",
     /owner-direction\/Logo-reference\.png/,

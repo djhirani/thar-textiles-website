@@ -22,7 +22,7 @@ test("renders every required homepage landmark", async ({ page }) => {
   await expect(
     page.getByText("Original craft for modern retail."),
   ).toBeVisible();
-  await expect(page.getByText("Journal preview")).toBeVisible();
+  await expect(page.getByText("The journal")).toBeVisible();
   await expect(page.getByText("Letters from Thar")).toBeVisible();
   await expect(page.locator("footer")).toBeVisible();
 });
@@ -138,14 +138,49 @@ test("metadata, local images, and reduced motion are valid", async ({
   const mailtoLinks = await page
     .locator('a[href^="mailto:"]')
     .evaluateAll((links) => links.map((link) => link.getAttribute("href")));
-  expect(new Set(mailtoLinks)).toEqual(
-    new Set(["mailto:hello@thartextiles.co"]),
-  );
+  expect(mailtoLinks.length).toBeGreaterThan(0);
+  expect(
+    mailtoLinks.every((href) =>
+      href?.startsWith("mailto:hello@thartextiles.co"),
+    ),
+  ).toBe(true);
 
   const orbitDuration = await page
     .locator(".hero-orbit")
     .evaluate((element) => getComputedStyle(element).animationDuration);
   expect(Number.parseFloat(orbitDuration)).toBeLessThanOrEqual(0.01);
+});
+
+test("publishes customer-facing copy and functional enquiry routes", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  for (const internalPhrase of [
+    "Campaign photography in development",
+    "Photography brief",
+    "Required for final publication",
+    "Attribution pending verification and consent",
+    "Landscape photography commission pending",
+    "Editorial commissioning brief",
+    "submission is not connected",
+    "commerce connection pending",
+  ]) {
+    await expect(page.getByText(internalPhrase, { exact: false })).toHaveCount(
+      0,
+    );
+  }
+
+  await expect(
+    page.getByRole("link", { name: "Enquire about a piece by email" }),
+  ).toHaveAttribute("href", /^mailto:hello@thartextiles\.co\?subject=/);
+  await expect(page.getByLabel("Email address")).toHaveAttribute(
+    "required",
+    "",
+  );
+  await expect(
+    page.getByRole("button", { name: "Join by email" }),
+  ).toBeVisible();
 });
 
 test("publishes official robots, sitemap, and manifest details", async ({
