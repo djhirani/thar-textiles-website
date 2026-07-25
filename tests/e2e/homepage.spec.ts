@@ -42,6 +42,41 @@ test("mobile navigation opens, closes, and exposes primary links", async ({
   await expect(dialog).toBeHidden();
 });
 
+for (const mobile of [
+  { name: "iphone", width: 390, height: 844 },
+  { name: "android", width: 412, height: 915 },
+]) {
+  test(`${mobile.name} menu covers the viewport and preserves scroll position`, async ({
+    page,
+  }) => {
+    await page.setViewportSize(mobile);
+    await page.goto("/");
+    const trigger = page.getByRole("button", { name: "Open menu" });
+    await expect(trigger).toBeVisible();
+    await expect(trigger).toHaveCSS("min-width", "44px");
+    await expect(trigger).toHaveCSS("min-height", "44px");
+    await page.evaluate(() =>
+      window.scrollTo(0, document.body.scrollHeight / 2),
+    );
+    const scrollPosition = await page.evaluate(() => window.scrollY);
+
+    await trigger.click();
+
+    const shell = page.locator(".mobile-menu-shell");
+    await expect(shell).toBeVisible();
+    const bounds = await shell.boundingBox();
+    expect(bounds?.y).toBe(0);
+    expect(bounds?.height).toBeGreaterThanOrEqual(mobile.height);
+    await expect(page.locator("body")).toHaveCSS("position", "fixed");
+
+    await page.locator(".mobile-menu-top .icon-button").click();
+    await expect(shell).toHaveCount(0);
+    await expect
+      .poll(() => page.evaluate(() => window.scrollY))
+      .toBe(scrollPosition);
+  });
+}
+
 test("has no serious or critical automated accessibility violations", async ({
   page,
 }) => {

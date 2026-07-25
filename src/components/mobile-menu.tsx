@@ -13,6 +13,16 @@ export function MobileMenu() {
   useEffect(() => {
     if (!open) return;
 
+    const scrollPosition = window.scrollY;
+    const previousBodyStyles = {
+      left: document.body.style.left,
+      overflow: document.body.style.overflow,
+      position: document.body.style.position,
+      right: document.body.style.right,
+      top: document.body.style.top,
+      width: document.body.style.width,
+    };
+
     closeButton.current?.focus();
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -22,11 +32,24 @@ export function MobileMenu() {
     };
 
     document.body.classList.add("menu-open");
+    document.body.style.left = "0";
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.right = "0";
+    document.body.style.top = `-${scrollPosition}px`;
+    document.body.style.width = "100%";
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
       document.body.classList.remove("menu-open");
+      document.body.style.left = previousBodyStyles.left;
+      document.body.style.overflow = previousBodyStyles.overflow;
+      document.body.style.position = previousBodyStyles.position;
+      document.body.style.right = previousBodyStyles.right;
+      document.body.style.top = previousBodyStyles.top;
+      document.body.style.width = previousBodyStyles.width;
       window.removeEventListener("keydown", onKeyDown);
+      window.scrollTo(0, scrollPosition);
     };
   }, [open]);
 
