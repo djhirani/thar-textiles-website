@@ -1,0 +1,6 @@
+.next
+node_modules
+coverage
+public/images
+package-lock.json
+project-documents

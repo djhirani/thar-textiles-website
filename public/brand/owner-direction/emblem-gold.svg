@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="title">
+  <title id="title">Thar Textiles four-diamond emblem in warm gold</title>
+  <g fill="none" stroke="#C8A161" stroke-linecap="square" stroke-linejoin="miter" stroke-width="4">
+    <path d="M50 4 68 22 50 40 32 22 50 4Z"/>
+    <path d="m50 12 10 10-10 10-10-10 10-10Z" stroke-width="3"/>
+    <path d="M22 30 40 48 22 66 4 48 22 30Z"/>
+    <path d="m22 38 10 10-10 10-10-10 10-10Z" stroke-width="3"/>
+    <path d="M78 30 96 48 78 66 60 48 78 30Z"/>
+    <path d="m78 38 10 10-10 10-10-10 10-10Z" stroke-width="3"/>
+    <path d="M50 60 68 78 50 96 32 78 50 60Z"/>
+    <path d="m50 68 10 10-10 10-10-10 10-10Z" stroke-width="3"/>
+    <path d="m35 35 30 30M65 35 35 65"/>
+  </g>
+  <g fill="#C8A161">
+    <path d="m41 37 5 5-5 5-5-5 5-5Zm18 0 5 5-5 5-5-5 5-5ZM41 53l5 5-5 5-5-5 5-5Zm18 0 5 5-5 5-5-5 5-5Z"/>
+  </g>
+</svg>
