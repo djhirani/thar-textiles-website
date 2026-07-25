@@ -6,7 +6,9 @@ export type ProductSource = {
   note: string;
 };
 
-const productRoot = "/images/site-products";
+import { withBasePath } from "./paths";
+
+const productRoot = withBasePath("/images/site-products");
 
 export const products: ProductSource[] = [
   {

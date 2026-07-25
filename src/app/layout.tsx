@@ -2,6 +2,7 @@ import "@fontsource-variable/fraunces";
 import "@fontsource-variable/manrope";
 import type { Metadata, Viewport } from "next";
 import { verifiedBusiness } from "@/lib/content";
+import { withBasePath } from "@/lib/paths";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -36,10 +37,16 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/brand/owner-direction/favicon.svg", type: "image/svg+xml" },
+      {
+        url: withBasePath("/brand/owner-direction/favicon.svg"),
+        type: "image/svg+xml",
+      },
     ],
     apple: [
-      { url: "/brand/owner-direction/favicon.svg", type: "image/svg+xml" },
+      {
+        url: withBasePath("/brand/owner-direction/favicon.svg"),
+        type: "image/svg+xml",
+      },
     ],
   },
   robots: { index: true, follow: true },

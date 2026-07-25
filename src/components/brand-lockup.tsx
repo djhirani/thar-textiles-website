@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { withBasePath } from "@/lib/paths";
 
 export function BrandLockup({
   className = "",
@@ -25,7 +26,7 @@ export function BrandLockup({
         alt=""
         height={1402}
         priority={priority}
-        src="/brand/owner-direction/Logo-reference.png"
+        src={withBasePath("/brand/owner-direction/Logo-reference.png")}
         unoptimized
         width={1122}
       />

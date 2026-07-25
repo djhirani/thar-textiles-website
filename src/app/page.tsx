@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { products, verifiedBusiness } from "@/lib/content";
+import { withBasePath } from "@/lib/paths";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import {
@@ -10,10 +11,16 @@ import {
   TextLink,
 } from "@/components/primitives";
 
-const heroBag = "/images/site-products/embroidered-shoulder-bag.jpeg";
-const heroKurta = "/images/site-products/hero-kurta.jpeg";
-const roundTextile = "/images/site-products/editorial-round-wall-hanging.jpeg";
-const wallTextile = "/images/site-products/editorial-wall-hanging.jpeg";
+const heroBag = withBasePath(
+  "/images/site-products/embroidered-shoulder-bag.jpeg",
+);
+const heroKurta = withBasePath("/images/site-products/hero-kurta.jpeg");
+const roundTextile = withBasePath(
+  "/images/site-products/editorial-round-wall-hanging.jpeg",
+);
+const wallTextile = withBasePath(
+  "/images/site-products/editorial-wall-hanging.jpeg",
+);
 
 const moods = [
   {
