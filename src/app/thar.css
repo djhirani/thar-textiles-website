@@ -224,7 +224,7 @@ body {
 /* ---------- Header ---------- */
 
 .tt-header {
-  background: rgb(255 255 255 / 0.97);
+  background: var(--tt-white);
   border-bottom: 1px solid var(--tt-line);
   position: sticky;
   top: 0;
