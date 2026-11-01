@@ -1,0 +1,13 @@
+# Copy to .dev.vars. Never commit .dev.vars.
+LOCAL_ADMIN_TOKEN=replace-with-a-long-random-local-token
+RATE_LIMIT_SALT=replace-with-a-separate-random-local-secret
+# Production only after approval:
+# TURNSTILE_SECRET_KEY=
+# TURNSTILE_EXPECTED_HOSTNAME=
+# ACCESS_TEAM_DOMAIN=
+# ACCESS_AUD=
+# EMAIL_TRANSPORT=resend
+# RESEND_API_KEY=
+# EMAIL_FROM=
+# EMAIL_ADMIN_TO=
+# ADMIN_DASHBOARD_URL=

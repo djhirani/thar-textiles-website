@@ -1,0 +1,290 @@
+{
+  "kurta-red": [
+    {
+      "width": 320,
+      "src": "/images/editorial/kurta-red-320.webp",
+      "avif": "/images/editorial/kurta-red-320.avif"
+    },
+    {
+      "width": 480,
+      "src": "/images/editorial/kurta-red-480.webp",
+      "avif": "/images/editorial/kurta-red-480.avif"
+    },
+    {
+      "width": 768,
+      "src": "/images/editorial/kurta-red-768.webp",
+      "avif": "/images/editorial/kurta-red-768.avif"
+    },
+    {
+      "width": 960,
+      "src": "/images/editorial/kurta-red-960.webp",
+      "avif": "/images/editorial/kurta-red-960.avif"
+    }
+  ],
+  "kurta-ochre": [
+    {
+      "width": 320,
+      "src": "/images/editorial/kurta-ochre-320.webp",
+      "avif": "/images/editorial/kurta-ochre-320.avif"
+    },
+    {
+      "width": 480,
+      "src": "/images/editorial/kurta-ochre-480.webp",
+      "avif": "/images/editorial/kurta-ochre-480.avif"
+    },
+    {
+      "width": 768,
+      "src": "/images/editorial/kurta-ochre-768.webp",
+      "avif": "/images/editorial/kurta-ochre-768.avif"
+    },
+    {
+      "width": 960,
+      "src": "/images/editorial/kurta-ochre-960.webp",
+      "avif": "/images/editorial/kurta-ochre-960.avif"
+    }
+  ],
+  "embroidered-shoulder-bag": [
+    {
+      "width": 320,
+      "src": "/images/editorial/embroidered-shoulder-bag-320.webp",
+      "avif": "/images/editorial/embroidered-shoulder-bag-320.avif"
+    },
+    {
+      "width": 480,
+      "src": "/images/editorial/embroidered-shoulder-bag-480.webp",
+      "avif": "/images/editorial/embroidered-shoulder-bag-480.avif"
+    },
+    {
+      "width": 768,
+      "src": "/images/editorial/embroidered-shoulder-bag-768.webp",
+      "avif": "/images/editorial/embroidered-shoulder-bag-768.avif"
+    },
+    {
+      "width": 1280,
+      "src": "/images/editorial/embroidered-shoulder-bag-1280.webp",
+      "avif": "/images/editorial/embroidered-shoulder-bag-1280.avif"
+    }
+  ],
+  "round-wall-hanging": [
+    {
+      "width": 320,
+      "src": "/images/editorial/round-wall-hanging-320.webp",
+      "avif": "/images/editorial/round-wall-hanging-320.avif"
+    },
+    {
+      "width": 480,
+      "src": "/images/editorial/round-wall-hanging-480.webp",
+      "avif": "/images/editorial/round-wall-hanging-480.avif"
+    },
+    {
+      "width": 768,
+      "src": "/images/editorial/round-wall-hanging-768.webp",
+      "avif": "/images/editorial/round-wall-hanging-768.avif"
+    },
+    {
+      "width": 1238,
+      "src": "/images/editorial/round-wall-hanging-1238.webp",
+      "avif": "/images/editorial/round-wall-hanging-1238.avif"
+    }
+  ],
+  "hero-kurta": [
+    {
+      "width": 320,
+      "src": "/images/editorial/hero-kurta-320.webp",
+      "avif": "/images/editorial/hero-kurta-320.avif"
+    },
+    {
+      "width": 480,
+      "src": "/images/editorial/hero-kurta-480.webp",
+      "avif": "/images/editorial/hero-kurta-480.avif"
+    },
+    {
+      "width": 768,
+      "src": "/images/editorial/hero-kurta-768.webp",
+      "avif": "/images/editorial/hero-kurta-768.avif"
+    },
+    {
+      "width": 960,
+      "src": "/images/editorial/hero-kurta-960.webp",
+      "avif": "/images/editorial/hero-kurta-960.avif"
+    }
+  ],
+  "editorial-round-wall-hanging": [
+    {
+      "width": 320,
+      "src": "/images/editorial/editorial-round-wall-hanging-320.webp",
+      "avif": "/images/editorial/editorial-round-wall-hanging-320.avif"
+    },
+    {
+      "width": 480,
+      "src": "/images/editorial/editorial-round-wall-hanging-480.webp",
+      "avif": "/images/editorial/editorial-round-wall-hanging-480.avif"
+    },
+    {
+      "width": 768,
+      "src": "/images/editorial/editorial-round-wall-hanging-768.webp",
+      "avif": "/images/editorial/editorial-round-wall-hanging-768.avif"
+    },
+    {
+      "width": 1240,
+      "src": "/images/editorial/editorial-round-wall-hanging-1240.webp",
+      "avif": "/images/editorial/editorial-round-wall-hanging-1240.avif"
+    }
+  ],
+  "editorial-wall-hanging": [
+    {
+      "width": 320,
+      "src": "/images/editorial/editorial-wall-hanging-320.webp",
+      "avif": "/images/editorial/editorial-wall-hanging-320.avif"
+    },
+    {
+      "width": 480,
+      "src": "/images/editorial/editorial-wall-hanging-480.webp",
+      "avif": "/images/editorial/editorial-wall-hanging-480.avif"
+    },
+    {
+      "width": 768,
+      "src": "/images/editorial/editorial-wall-hanging-768.webp",
+      "avif": "/images/editorial/editorial-wall-hanging-768.avif"
+    },
+    {
+      "width": 938,
+      "src": "/images/editorial/editorial-wall-hanging-938.webp",
+      "avif": "/images/editorial/editorial-wall-hanging-938.avif"
+    }
+  ],
+  "embroidery-detail": [
+    {
+      "width": 320,
+      "src": "/images/editorial/embroidery-detail-320.webp",
+      "avif": "/images/editorial/embroidery-detail-320.avif"
+    },
+    {
+      "width": 480,
+      "src": "/images/editorial/embroidery-detail-480.webp",
+      "avif": "/images/editorial/embroidery-detail-480.avif"
+    },
+    {
+      "width": 768,
+      "src": "/images/editorial/embroidery-detail-768.webp",
+      "avif": "/images/editorial/embroidery-detail-768.avif"
+    },
+    {
+      "width": 930,
+      "src": "/images/editorial/embroidery-detail-930.webp",
+      "avif": "/images/editorial/embroidery-detail-930.avif"
+    }
+  ],
+  "garment-detail": [
+    {
+      "width": 320,
+      "src": "/images/editorial/garment-detail-320.webp",
+      "avif": "/images/editorial/garment-detail-320.avif"
+    },
+    {
+      "width": 480,
+      "src": "/images/editorial/garment-detail-480.webp",
+      "avif": "/images/editorial/garment-detail-480.avif"
+    },
+    {
+      "width": 500,
+      "src": "/images/editorial/garment-detail-500.webp",
+      "avif": "/images/editorial/garment-detail-500.avif"
+    }
+  ],
+  "bag-detail": [
+    {
+      "width": 320,
+      "src": "/images/editorial/bag-detail-320.webp",
+      "avif": "/images/editorial/bag-detail-320.avif"
+    },
+    {
+      "width": 480,
+      "src": "/images/editorial/bag-detail-480.webp",
+      "avif": "/images/editorial/bag-detail-480.avif"
+    },
+    {
+      "width": 768,
+      "src": "/images/editorial/bag-detail-768.webp",
+      "avif": "/images/editorial/bag-detail-768.avif"
+    },
+    {
+      "width": 1280,
+      "src": "/images/editorial/bag-detail-1280.webp",
+      "avif": "/images/editorial/bag-detail-1280.avif"
+    }
+  ],
+  "home-detail": [
+    {
+      "width": 320,
+      "src": "/images/editorial/home-detail-320.webp",
+      "avif": "/images/editorial/home-detail-320.avif"
+    },
+    {
+      "width": 480,
+      "src": "/images/editorial/home-detail-480.webp",
+      "avif": "/images/editorial/home-detail-480.avif"
+    },
+    {
+      "width": 710,
+      "src": "/images/editorial/home-detail-710.webp",
+      "avif": "/images/editorial/home-detail-710.avif"
+    }
+  ],
+  "peacock-detail": [
+    {
+      "width": 320,
+      "src": "/images/editorial/peacock-detail-320.webp",
+      "avif": "/images/editorial/peacock-detail-320.avif"
+    },
+    {
+      "width": 480,
+      "src": "/images/editorial/peacock-detail-480.webp",
+      "avif": "/images/editorial/peacock-detail-480.avif"
+    },
+    {
+      "width": 750,
+      "src": "/images/editorial/peacock-detail-750.webp",
+      "avif": "/images/editorial/peacock-detail-750.avif"
+    }
+  ],
+  "bag-framed": [
+    {
+      "width": 320,
+      "src": "/images/editorial/bag-framed-320.webp",
+      "avif": "/images/editorial/bag-framed-320.avif"
+    },
+    {
+      "width": 480,
+      "src": "/images/editorial/bag-framed-480.webp",
+      "avif": "/images/editorial/bag-framed-480.avif"
+    },
+    {
+      "width": 768,
+      "src": "/images/editorial/bag-framed-768.webp",
+      "avif": "/images/editorial/bag-framed-768.avif"
+    },
+    {
+      "width": 1280,
+      "src": "/images/editorial/bag-framed-1280.webp",
+      "avif": "/images/editorial/bag-framed-1280.avif"
+    }
+  ],
+  "studio-embroidery": [
+    {
+      "width": 320,
+      "src": "/images/editorial/studio-embroidery-320.webp",
+      "avif": "/images/editorial/studio-embroidery-320.avif"
+    },
+    {
+      "width": 480,
+      "src": "/images/editorial/studio-embroidery-480.webp",
+      "avif": "/images/editorial/studio-embroidery-480.avif"
+    },
+    {
+      "width": 560,
+      "src": "/images/editorial/studio-embroidery-560.webp",
+      "avif": "/images/editorial/studio-embroidery-560.avif"
+    }
+  ]
+}

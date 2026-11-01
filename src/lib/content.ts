@@ -4,6 +4,7 @@ export type ProductSource = {
   image: string;
   imageAlt: string;
   note: string;
+  description: string;
 };
 
 import { withBasePath } from "./paths";
@@ -16,25 +17,31 @@ export function enquiryHref(subject: string) {
 
 export const products: ProductSource[] = [
   {
-    title: "Hand-embroidered kurta",
+    title: "Red embroidered kurta",
     category: "Garments",
     image: `${productRoot}/kurta-red.jpeg`,
     imageAlt: "Red hand-embroidered kurta hanging against a pale background",
+    description:
+      "A red kurta with a pale embroidered neckline panel and contrasting patterned sleeves.",
     note: "Available by personal enquiry.",
   },
   {
-    title: "Hand-embroidered kurta",
+    title: "Ochre embroidered kurta",
     category: "Garments",
     image: `${productRoot}/kurta-ochre.jpeg`,
     imageAlt: "Ochre hand-embroidered kurta hanging against a pale background",
+    description:
+      "An ochre kurta with a brightly embroidered front panel and long sleeves.",
     note: "Available by personal enquiry.",
   },
   {
     title: "Embroidered shoulder bag",
     category: "Bags",
-    image: `${productRoot}/embroidered-shoulder-bag.jpeg`,
+    image: withBasePath("/images/optimized/embroidered-shoulder-bag-1440.jpeg"),
     imageAlt:
       "Rectangular shoulder bag with multicoloured geometric embroidery",
+    description:
+      "An embroidered shoulder bag with a circular green centre motif and multicoloured panels.",
     note: "Available by personal enquiry.",
   },
   {
@@ -43,19 +50,20 @@ export const products: ProductSource[] = [
     image: `${productRoot}/round-wall-hanging.jpeg`,
     imageAlt:
       "Round textile wall hanging assembled from colourful embroidered panels",
+    description:
+      "A circular wall piece composed of contrasting embroidered textile panels.",
     note: "Available by personal enquiry.",
   },
 ];
 
 export const navigation = [
-  { label: "New", href: "#new" },
-  { label: "Shop", href: "#shop" },
-  { label: "Collections", href: "#collection" },
-  { label: "Our Craft", href: "#craft" },
-  { label: "The Women", href: "#women" },
-  { label: "Our Story", href: "#story" },
-  { label: "Impact", href: "#impact" },
-  { label: "Trade", href: "#trade" },
+  { label: "Shop", href: "/shop/" },
+  { label: "Artisans", href: "/artisans/" },
+  { label: "Wholesale", href: "/wholesale/" },
+  { label: "Partnerships & impact", href: "/impact/" },
+  { label: "Collaborate", href: "/collaborate/" },
+  { label: "About", href: "/about/" },
+  { label: "Contact", href: "/contact/" },
 ];
 
 export const verifiedBusiness = {

@@ -1,94 +1,80 @@
-import { enquiryHref, verifiedBusiness } from "@/lib/content";
+import { verifiedBusiness } from "@/lib/content";
+import Link from "next/link";
 import { BrandLockup } from "./brand-lockup";
-import { Container, DecorativeStitch } from "./primitives";
+import { Container } from "./primitives";
 
-const footerGroups = [
+const groups = [
   {
-    title: "Shop",
+    title: "Explore",
     links: [
-      { label: "New pieces", href: "#new" },
-      { label: "Garments", href: "#shop" },
-      { label: "Bags", href: "#shop" },
-      { label: "Home textiles", href: "#shop" },
+      { label: "Shop & collections", href: "/shop/" },
+      { label: "Meet the artisans", href: "/artisans/" },
+      { label: "About Thar Textiles", href: "/about/" },
     ],
   },
   {
-    title: "Discover",
+    title: "Work together",
     links: [
-      { label: "Our craft", href: "#craft" },
-      { label: "The women", href: "#women" },
-      { label: "Our story", href: "#story" },
-      { label: "Impact & research", href: "#impact" },
+      { label: "Wholesale & export", href: "/wholesale/" },
+      { label: "Partnerships & impact", href: "/impact/" },
+      { label: "Collaborate with us", href: "/collaborate/" },
     ],
   },
   {
-    title: "Help",
+    title: "Connect",
     links: [
-      { label: "Contact", href: `mailto:${verifiedBusiness.email}` },
-      { label: "Sizing", href: enquiryHref("Sizing enquiry") },
-      {
-        label: "Shipping & returns",
-        href: enquiryHref("Shipping and returns enquiry"),
-      },
-      { label: "Care guide", href: enquiryHref("Product care enquiry") },
-    ],
-  },
-  {
-    title: "Trade",
-    links: [
-      { label: "Wholesale", href: enquiryHref("Wholesale enquiry") },
-      { label: "Collaborations", href: enquiryHref("Collaboration enquiry") },
-      { label: "Exhibitions", href: enquiryHref("Exhibition enquiry") },
-      { label: "Press", href: enquiryHref("Press enquiry") },
+      { label: "Contact", href: "/contact/" },
+      { label: "Email", href: `mailto:${verifiedBusiness.email}` },
+      { label: "Call", href: `tel:+${verifiedBusiness.phoneHref}` },
     ],
   },
 ];
 
-export function SiteFooter() {
+export function SiteFooter({ darkAccent = true }: { darkAccent?: boolean }) {
   return (
-    <footer className="site-footer" id="contact">
+    <footer
+      className={`platform-footer${darkAccent ? " platform-footer--accent" : ""}`}
+      id="contact"
+    >
       <Container>
-        <div className="footer-lead">
-          <BrandLockup className="footer-mark" inverse />
-          <p className="footer-statement">
-            Craft with a point of view.
-            <br />
-            Made in Tharparkar.
-          </p>
-          <DecorativeStitch />
+        <div className="platform-footer__top">
+          <div>
+            <BrandLockup className="platform-footer__brand" />
+            <p>
+              Craft, community and contemporary textiles from Tharparkar, Sindh.
+            </p>
+          </div>
+          <Link className="platform-footer__cta" href="/contact/">
+            Start a conversation <span aria-hidden="true">↗</span>
+          </Link>
         </div>
-        <div className="footer-grid">
-          {footerGroups.map((group) => (
+        <div className="platform-footer__grid">
+          {groups.map((group) => (
             <div key={group.title}>
               <h2>{group.title}</h2>
               <ul>
                 {group.links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href}>{link.label}</a>
+                    {link.href.startsWith("/") ? (
+                      <Link href={link.href}>{link.label}</Link>
+                    ) : (
+                      <a href={link.href}>{link.label}</a>
+                    )}
                   </li>
                 ))}
               </ul>
             </div>
           ))}
-          <address>
-            <h2>Visit & contact</h2>
+          <div>
+            <h2>Visit</h2>
             <p>{verifiedBusiness.mithiOutlet}</p>
-            <p>{verifiedBusiness.secondOutlet} outlet</p>
-            <a href={`tel:+${verifiedBusiness.phoneHref}`}>
-              {verifiedBusiness.phoneDisplay}
-            </a>
-            <a href={`mailto:${verifiedBusiness.email}`}>
-              {verifiedBusiness.email}
-            </a>
-            <a href={verifiedBusiness.website}>
-              {verifiedBusiness.websiteDisplay}
-            </a>
-          </address>
+            <p>{verifiedBusiness.secondOutlet}, Sindh</p>
+          </div>
         </div>
-        <div className="footer-bottom">
-          <p>© 2026 {verifiedBusiness.legalName}</p>
-          <p>{verifiedBusiness.headquarters}</p>
-          <p>Women Crafting Change</p>
+        <div className="platform-footer__bottom">
+          <span>© {new Date().getFullYear()} Thar Textiles</span>
+          <Link href="/privacy/">Privacy notice</Link>
+          <span>{verifiedBusiness.headquarters}</span>
         </div>
       </Container>
     </footer>

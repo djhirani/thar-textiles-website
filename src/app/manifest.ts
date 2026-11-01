@@ -11,13 +11,13 @@ export default function manifest(): MetadataRoute.Manifest {
     description: verifiedBusiness.description,
     start_url: "/",
     display: "standalone",
-    background_color: "#f7f3ec",
-    theme_color: "#f7f3ec",
+    background_color: "#ffffff",
+    theme_color: "#ffffff",
     icons: [
       {
-        src: withBasePath("/brand/owner-direction/favicon.svg"),
-        sizes: "512x512",
-        type: "image/svg+xml",
+        src: withBasePath("/brand/emblem-premium-heritage-216.png"),
+        sizes: "216x216",
+        type: "image/png",
       },
     ],
   };

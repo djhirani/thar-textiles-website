@@ -1,14 +1,22 @@
-import { ButtonLink, Container } from "@/components/primitives";
+import { PlatformShell } from "@/components/platform-shell";
+import { Action, Eyebrow } from "@/components/platform-ui";
 
 export default function NotFound() {
   return (
-    <main className="not-found">
-      <Container>
-        <p className="eyebrow">404 — Thread lost</p>
-        <h1>This page has moved beyond the dunes.</h1>
-        <p>Return to the current Thar Textiles homepage.</p>
-        <ButtonLink href="/">Return home</ButtonLink>
-      </Container>
-    </main>
+    <PlatformShell>
+      <section className="platform-page-hero">
+        <div className="platform-wrap">
+          <Eyebrow>404 · Page unavailable</Eyebrow>
+          <h1>We could not find that page.</h1>
+          <p>Return to the Thar Textiles homepage or browse the collection.</p>
+          <div className="platform-actions">
+            <Action href="/">Return home</Action>
+            <Action href="/shop/" secondary>
+              Browse the collection
+            </Action>
+          </div>
+        </div>
+      </section>
+    </PlatformShell>
   );
 }

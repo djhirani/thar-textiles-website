@@ -1,0 +1,767 @@
+/* Approved White Gallery Luxury theme. Original emblem artwork is untouched. */
+.gallery {
+  --canvas: #ffffff;
+  --editorial-deep: #15344d;
+  --editorial-deep-hover: #214762;
+  --platform-cream: #ffffff;
+  --platform-navy: #172229;
+  --platform-ink: #172229;
+  --platform-copper: #a65b49;
+  --platform-line: #e4e7e7;
+  --editorial-warm: #f5f6f6;
+  --editorial-muted: #647078;
+  --editorial-gold: #a65b49;
+  --editorial-terra: #a65b49;
+  background: #ffffff;
+  color: #172229;
+  min-height: 100vh;
+}
+.gallery :global(.site-header) {
+  background: #ffffff;
+  border-color: #e4e7e7;
+}
+.gallery :global(.header-inner) {
+  min-height: 6rem;
+}
+.gallery :global(.desktop-nav a) {
+  color: #172229;
+  font-weight: 500;
+}
+.gallery :global(.desktop-nav a:hover),
+.gallery :global(.desktop-nav a[aria-current="page"]) {
+  color: #a65b49;
+}
+.gallery :global(.header-contact) {
+  background: #172229;
+  color: #ffffff;
+  border-color: #172229;
+}
+.gallery :global(.header-contact:hover) {
+  background: #ffffff;
+  color: #172229;
+}
+.gallery :global(.mobile-menu),
+.gallery :global(.platform-section),
+.gallery :global(.platform-intro),
+.gallery :global(.platform-audiences),
+.gallery :global(.platform-trade),
+.gallery :global(.platform-page-hero--shop),
+.gallery :global(.platform-contact-strip) {
+  background: #ffffff;
+}
+.gallery :global(.platform-hero) {
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: 4rem;
+  margin-block: 3rem 4rem;
+}
+.gallery :global(.platform-hero__copy) {
+  padding-block: 1rem;
+}
+.gallery :global(.platform-hero h1) {
+  font-size: clamp(3.5rem, 5.6vw, 5.8rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+  margin-bottom: 1.8rem;
+}
+.gallery :global(.platform-hero h1 em) {
+  color: #172229;
+  font-size: 0.47em;
+  line-height: 1.3;
+  margin-top: 1.5rem;
+  max-width: 20ch;
+}
+.gallery :global(.platform-hero__copy > p:not(.platform-eyebrow)) {
+  color: #647078;
+  max-width: 32ch;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-top: 1.25rem;
+}
+.gallery :global(.platform-hero__index) {
+  color: #647078;
+  margin-top: 2.75rem;
+}
+.gallery :global(.platform-hero__visual > .platform-photo) {
+  aspect-ratio: 1.08;
+}
+.gallery :global(.editorial-caption) {
+  color: #647078;
+  margin-top: 1rem;
+}
+.gallery :global(.platform-heading h2) {
+  font-size: clamp(2rem, 3.15vw, 3.25rem);
+}
+.gallery :global(.editorial-featured) {
+  border-top: 1px solid #e4e7e7;
+}
+.gallery :global(.platform-product .platform-photo) {
+  background: #f5f6f6;
+}
+.gallery :global(.platform-product h3) {
+  color: #172229;
+  font-size: 1.3rem;
+  line-height: 1.3;
+  font-weight: 400;
+}
+.gallery :global(.platform-product p),
+.gallery :global(.platform-collections p),
+.gallery :global(.platform-audience-grid p),
+.gallery :global(.platform-two-up p) {
+  color: #647078;
+}
+.gallery :global(.platform-product__meta) {
+  color: #647078;
+  letter-spacing: 0.07em;
+  font-weight: 600;
+}
+.gallery :global(.platform-product img),
+.gallery :global(.platform-collections img) {
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.gallery :global(.platform-product a:hover img),
+.gallery :global(.platform-collections a:hover img) {
+  transform: scale(1.035);
+}
+.gallery :global(.platform-story) {
+  background: var(--editorial-deep);
+  color: #ffffff;
+  padding-block: clamp(4rem, 7vw, 7rem);
+}
+.gallery :global(.platform-story__grid) {
+  gap: 5rem;
+  grid-template-columns: 1.1fr 0.9fr;
+}
+.gallery :global(.platform-story h2) {
+  color: #ffffff;
+  font-size: clamp(2.5rem, 3.5vw, 3.75rem);
+  max-width: 16ch;
+}
+.gallery :global(.platform-story .platform-eyebrow) {
+  color: #ffffff;
+}
+.gallery :global(.platform-story p:not(.platform-eyebrow)) {
+  color: #e4e7e7;
+  max-width: 40ch;
+  font-size: 0.95rem;
+}
+.gallery :global(.platform-story .platform-action) {
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid #8fa4b2;
+  margin-top: 1.5rem;
+}
+.gallery :global(.platform-story .platform-action:hover) {
+  background: #ffffff;
+  color: var(--editorial-deep);
+  border-color: #ffffff;
+}
+.gallery :global(.platform-trade) {
+  background: #f5f6f6;
+}
+.gallery :global(.platform-contact-strip) {
+  border-top-color: #e4e7e7;
+}
+.gallery :global(.platform-footer) {
+  background: #f5f6f6;
+  color: #172229;
+  padding-top: 3.5rem;
+}
+.gallery :global(.platform-footer__top),
+.gallery :global(.platform-footer__bottom) {
+  border-color: #e4e7e7;
+}
+.gallery :global(.platform-footer__cta) {
+  color: #172229;
+  border-color: #a65b49;
+}
+.gallery :global(.platform-footer__grid h2) {
+  color: #647078;
+}
+.gallery :global(.platform-footer__grid a),
+.gallery :global(.platform-footer__grid p),
+.gallery :global(.platform-footer__bottom) {
+  color: #172229;
+}
+.gallery :global(.platform-footer::after) {
+  background: #172229;
+  height: 0.25rem;
+}
+.gallery :global(.platform-action:hover) {
+  background: #172229;
+}
+.gallery :global(.platform-action--secondary:hover) {
+  background: transparent;
+  color: #a65b49;
+}
+.gallery :global(.platform-story .platform-action:hover) {
+  background: #ffffff;
+  color: var(--editorial-deep);
+}
+.gallery :global(a:focus-visible),
+.gallery :global(button:focus-visible) {
+  outline: 2px solid #a65b49;
+  outline-offset: 5px;
+}
+.gallery :global(.platform-story a:focus-visible) {
+  outline-color: #ffffff;
+}
+/* A restrained catalogue masthead followed by the same working search/filters. */
+.gallery :global(.platform-page-hero--shop) {
+  padding-block: 4rem;
+}
+.gallery :global(.platform-page-hero--shop h1) {
+  font-size: clamp(3rem, 4.5vw, 4.75rem);
+  max-width: 18ch;
+  line-height: 1.08;
+  font-weight: 400;
+}
+.gallery :global(.platform-page-hero--shop h1 em) {
+  color: #a65b49;
+}
+.gallery :global(.platform-page-hero--shop p:not(.platform-eyebrow)) {
+  color: #647078;
+  max-width: 40ch;
+}
+.gallery :global(.catalogue-tools) {
+  gap: 2.5rem;
+}
+.gallery :global(.catalogue-tools input),
+.gallery :global(.catalogue-tools select) {
+  border-color: #647078;
+  color: #172229;
+  min-height: 3rem;
+  border-radius: 0;
+}
+.gallery :global(.catalogue-tools input::placeholder) {
+  color: #647078;
+  opacity: 1;
+}
+.gallery :global(.catalogue-tools ~ .platform-products) {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+}
+.gallery :global(.catalogue-tools ~ .platform-products .platform-photo) {
+  aspect-ratio: 4 / 5;
+}
+.gallery :global(.catalogue-tools ~ .platform-products .platform-photo img) {
+  inset: 0.6rem !important;
+  width: calc(100% - 1.2rem) !important;
+  height: calc(100% - 1.2rem) !important;
+}
+.gallery :global(.catalogue-tools ~ .platform-products h3) {
+  font-size: 1.3rem;
+  min-height: 2.6em;
+}
+@media (max-width: 1100px) {
+  .gallery :global(.platform-hero) {
+    gap: 2rem;
+  }
+  .gallery :global(.platform-hero h1) {
+    font-size: clamp(3rem, 5.7vw, 4.5rem);
+  }
+  .gallery :global(.platform-story__grid) {
+    gap: 3rem;
+  }
+  .gallery :global(.catalogue-tools ~ .platform-products) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 767px) {
+  .gallery :global(.header-inner) {
+    min-height: 4.8rem;
+  }
+  .gallery :global(.platform-hero) {
+    grid-template-columns: 1fr;
+    margin-block: 1.75rem 2.5rem;
+    gap: 1.5rem;
+  }
+  .gallery :global(.platform-hero h1) {
+    font-size: clamp(2.65rem, 10.5vw, 4rem);
+    margin-bottom: 1.2rem;
+  }
+  .gallery :global(.platform-hero h1 em) {
+    font-size: 0.57em;
+    max-width: 23ch;
+    margin-top: 0.75rem;
+  }
+  .gallery :global(.platform-hero__copy) {
+    padding: 0;
+  }
+  .gallery :global(.platform-hero__copy > p:not(.platform-eyebrow)) {
+    max-width: none;
+    font-size: 0.88rem;
+    margin-top: 1rem;
+  }
+  .gallery :global(.platform-hero__visual > .platform-photo) {
+    aspect-ratio: 1.08;
+  }
+  .gallery :global(.platform-hero__index) {
+    display: none;
+  }
+  .gallery :global(.platform-story__grid) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .gallery :global(.platform-story h2) {
+    font-size: 2.4rem;
+  }
+  .gallery :global(.platform-page-hero--shop) {
+    padding-block: 2.75rem;
+  }
+  .gallery :global(.platform-page-hero--shop h1) {
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+  }
+  .gallery :global(.catalogue-tools) {
+    gap: 1.5rem;
+  }
+  .gallery :global(.catalogue-tools ~ .platform-products) {
+    gap: 2rem 1rem;
+  }
+  .gallery :global(.catalogue-tools ~ .platform-products h3),
+  .gallery :global(.platform-product h3) {
+    font-size: 1.15rem;
+  }
+  .gallery :global(.platform-footer) {
+    padding-top: 2.75rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery :global(.platform-product img),
+  .gallery :global(.platform-collections img) {
+    transition: none;
+  }
+  .gallery :global(.platform-product a:hover img),
+  .gallery :global(.platform-collections a:hover img) {
+    transform: none;
+  }
+}
+
+/* Focused header refinement: full desktop navigation from 1024px. */
+.gallery :global(.header-inner) {
+  width: min(calc(100% - 6rem), 1280px);
+  min-height: 6.5rem;
+  gap: 1.5rem;
+}
+.gallery :global(.brand-logo) {
+  padding-block: 0.5rem;
+}
+.gallery :global(.brand-logo__lockup > img) {
+  width: 5rem;
+  height: 5rem;
+}
+.gallery :global(.desktop-nav ul) {
+  gap: 0.5rem;
+}
+.gallery :global(.desktop-nav a) {
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+  padding-inline: 0.45rem;
+}
+@media (min-width: 1024px) {
+  .gallery :global(.header-inner) {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+  .gallery :global(.header-mobile-left) {
+    display: none;
+  }
+  .gallery :global(.desktop-nav) {
+    display: block;
+    justify-self: center;
+  }
+  .gallery :global(.brand-logo) {
+    justify-self: start;
+  }
+  .gallery :global(.platform-hero) {
+    margin-top: 2.5rem;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .gallery :global(.header-inner) {
+    width: calc(100% - 3rem);
+    gap: 1rem;
+  }
+  .gallery :global(.brand-logo__lockup) {
+    display: none;
+  }
+  .gallery :global(.brand-logo .brand-logo__symbol) {
+    display: inline-flex;
+  }
+  .gallery :global(.brand-logo__symbol > img) {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+  .gallery :global(.desktop-nav ul) {
+    gap: 0.25rem;
+  }
+  .gallery :global(.desktop-nav a) {
+    font-size: 0.78rem;
+    padding-inline: 0.35rem;
+  }
+}
+@media (max-width: 1023px) {
+  .gallery :global(.header-inner) {
+    width: calc(100% - 3rem);
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    min-height: 6rem;
+    gap: 0.75rem;
+  }
+  .gallery :global(.desktop-nav) {
+    display: none;
+  }
+  .gallery :global(.header-mobile-left) {
+    display: block;
+  }
+  .gallery :global(.brand-logo) {
+    justify-self: center;
+  }
+  .gallery :global(.brand-logo__lockup > img) {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+}
+@media (max-width: 767px) {
+  .gallery :global(.header-inner) {
+    width: calc(100% - 2.5rem);
+    min-height: 5.25rem;
+    gap: 0.25rem;
+  }
+  .gallery :global(.brand-logo__symbol > img) {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+}
+@media (max-width: 360px) {
+  .gallery :global(.header-inner) {
+    width: calc(100% - 2rem);
+  }
+}
+.gallery :global(.site-header .mobile-menu-trigger:hover),
+.gallery :global(.site-header .mobile-menu-trigger:focus-visible) {
+  background: #f5f6f6;
+}
+
+/* Approved extension to editorial pages, product details, enquiries and privacy. */
+.gallery :global(.platform-page-hero--impact),
+.gallery :global(.platform-page-hero--artisans),
+.gallery :global(.platform-page-hero--wholesale),
+.gallery :global(.platform-page-hero--collaborate),
+.gallery :global(.platform-page-hero--about),
+.gallery :global(.platform-page-hero--contact) {
+  background: #ffffff;
+}
+.gallery :global(.platform-page-hero:not(.platform-page-hero--shop)) {
+  padding-top: 4rem;
+}
+.gallery :global(.editorial-page-image figcaption),
+.gallery :global(.platform-breadcrumb),
+.gallery :global(.platform-pdp__copy > p),
+.gallery :global(.platform-detail-grid p) {
+  color: #647078;
+}
+.gallery :global(.platform-detail-grid--collaborate article:first-child),
+.gallery :global(.product-gallery__main),
+.gallery :global(.product-gallery__thumbs button) {
+  background: #f5f6f6;
+}
+.gallery :global(.product-gallery__thumbs button) {
+  border-color: #e4e7e7;
+}
+.gallery :global(.product-gallery__thumbs button[aria-pressed="true"]) {
+  border-color: #172229;
+}
+.gallery :global(.platform-pdp__facts),
+.gallery :global(.platform-pdp__facts dl > div),
+.gallery :global(.platform-contact-grid > div:last-child a) {
+  border-color: #e4e7e7;
+}
+.gallery :global(.platform-contact-grid a:hover),
+.gallery :global(.platform-pdp__copy > p a:hover),
+.gallery :global(.platform-breadcrumb a:hover) {
+  color: #a65b49;
+}
+.gallery :global(.platform-enquiry) {
+  background: #f5f6f6;
+  color: #172229;
+  scroll-margin-top: 7.5rem;
+}
+.gallery :global(.platform-enquiry__card) {
+  background: #ffffff;
+  border-top-color: #a65b49;
+}
+.gallery :global(.platform-enquiry input:not([type="checkbox"])),
+.gallery :global(.platform-enquiry textarea),
+.gallery :global(.platform-enquiry select) {
+  background: #ffffff;
+  color: #172229;
+  border-color: #647078;
+}
+.gallery :global(.platform-enquiry input::placeholder),
+.gallery :global(.platform-enquiry textarea::placeholder) {
+  color: #647078;
+  opacity: 1;
+}
+.gallery :global(.platform-enquiry button) {
+  background: #172229;
+  color: #ffffff;
+}
+.gallery :global(.platform-enquiry button:hover:not(:disabled)) {
+  background: #34434c;
+}
+.gallery :global(.platform-enquiry button:disabled) {
+  background: #647078;
+}
+.gallery :global(.platform-enquiry [role="alert"]) {
+  background: #ffffff;
+  color: #172229;
+  border-color: #a65b49;
+}
+.gallery :global(.platform-enquiry input:focus-visible),
+.gallery :global(.platform-enquiry select:focus-visible),
+.gallery :global(.platform-enquiry textarea:focus-visible) {
+  outline-color: #172229;
+}
+.gallery :global(.platform-privacy) {
+  max-width: 48rem;
+  padding-block: 4rem 5rem;
+}
+.gallery :global(.platform-privacy h1) {
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  margin-bottom: 2rem;
+}
+.gallery :global(.platform-privacy h2) {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.7rem;
+  margin-block: 2.5rem 1rem;
+}
+.gallery :global(.platform-privacy p) {
+  color: #647078;
+  line-height: 1.9;
+  margin-bottom: 1.25rem;
+}
+.gallery :global(.platform-privacy strong) {
+  color: #172229;
+}
+.gallery :global(.platform-privacy a) {
+  color: #a65b49;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 767px) {
+  .gallery :global(.platform-page-hero:not(.platform-page-hero--shop)) {
+    padding-top: 2.5rem;
+  }
+  .gallery :global(.platform-privacy) {
+    padding-block: 2.5rem 3.5rem;
+  }
+  .gallery :global(.platform-enquiry) {
+    scroll-margin-top: 6rem;
+  }
+}
+
+/* Tonal rhythm: a single cool-grey information band on editorial pages. */
+.gallery :global(.platform-section--details) {
+  background: #f1f3f4;
+  border-block: 1px solid #e4e7e7;
+  padding-block: clamp(2.75rem, 4vw, 4rem);
+}
+.gallery :global(.platform-section--details .platform-detail-grid article) {
+  border-top-color: #d8dfe2;
+}
+.gallery
+  :global(
+    .platform-section--details
+      .platform-detail-grid--collaborate
+      article:first-child
+  ) {
+  background: #ffffff;
+}
+.gallery :global(.platform-section--details + .platform-section--paper) {
+  padding-top: clamp(2.75rem, 4vw, 4rem);
+}
+.gallery
+  :global(.platform-section--details .platform-detail-grid article > span) {
+  color: #647078;
+}
+
+/* One compact navy invitation on secondary pages; homepage keeps its craft feature. */
+.gallery :global(.platform-footer--accent .platform-footer__cta) {
+  background: var(--editorial-deep);
+  color: #ffffff;
+  border: 0;
+  padding: 1.4rem 1.8rem;
+  min-height: 6rem;
+  max-width: 100%;
+  gap: 1.75rem;
+  font-size: clamp(1.25rem, 2.1vw, 2rem);
+}
+.gallery :global(.platform-footer--accent .platform-footer__cta:hover) {
+  background: var(--editorial-deep-hover);
+  color: #ffffff;
+}
+@media (max-width: 767px) {
+  .gallery :global(.platform-footer--accent .platform-footer__cta) {
+    width: 100%;
+    min-height: 5rem;
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+/* Customer-first studio narrative and local/international enquiry guidance. */
+.gallery :global(.platform-page-hero--about .platform-page-hero__grid) {
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+}
+.gallery :global(.platform-page-hero--about h1) {
+  max-width: 15ch;
+  font-size: clamp(3rem, 4.6vw, 4.6rem);
+  margin-bottom: 1.5rem;
+}
+.gallery :global(.platform-page-hero--about h1 em) {
+  color: var(--editorial-deep);
+}
+.gallery
+  :global(.platform-page-hero--about .editorial-page-image .platform-photo) {
+  aspect-ratio: 0.88;
+}
+.gallery :global(.platform-page-hero--about .editorial-page-image img) {
+  object-fit: cover;
+}
+.gallery :global(.platform-page-hero--about .editorial-page-image figcaption) {
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.gallery :global(.studio-connections) {
+  scroll-margin-top: 7.5rem;
+}
+.gallery :global(.studio-connections__grid) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5rem;
+}
+.gallery :global(.studio-connections__grid article) {
+  border-top: 1px solid #e4e7e7;
+  padding-top: 1.75rem;
+}
+.gallery :global(.studio-connections__grid h3) {
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 2.4vw, 2.4rem);
+  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.25rem;
+}
+.gallery :global(.studio-connections__grid p:not(.studio-kicker)) {
+  color: #647078;
+  line-height: 1.85;
+  max-width: 48ch;
+}
+.gallery :global(.studio-kicker) {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a65b49;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+.gallery :global(.studio-addresses) {
+  margin-block: 1.75rem;
+}
+.gallery :global(.studio-addresses > div) {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr);
+  gap: 1.25rem;
+  padding-block: 0.8rem;
+  border-bottom: 1px solid #e4e7e7;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+.gallery :global(.studio-addresses dt) {
+  font-weight: 600;
+}
+.gallery :global(.studio-addresses dd) {
+  margin: 0;
+  color: #647078;
+}
+.gallery :global(.studio-connection-links) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  margin-block: 1.5rem 2rem;
+}
+.gallery :global(.studio-text-link) {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  min-height: 44px;
+  font-size: 0.85rem;
+  color: #172229;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.gallery :global(.studio-text-link:hover) {
+  color: #a65b49;
+}
+.gallery :global(.studio-product-description) {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-block: 1.25rem 0.75rem;
+}
+@media (max-width: 767px) {
+  .gallery :global(.platform-page-hero--about .platform-page-hero__grid) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .gallery :global(.platform-page-hero--about .editorial-page-image) {
+    order: 1;
+  }
+  .gallery :global(.platform-page-hero--about h1) {
+    font-size: clamp(2.75rem, 10.5vw, 3.75rem);
+  }
+  .gallery
+    :global(.platform-page-hero--about .editorial-page-image .platform-photo) {
+    aspect-ratio: 1.1;
+  }
+  .gallery :global(.studio-connections) {
+    scroll-margin-top: 6rem;
+  }
+  .gallery :global(.studio-connections__grid) {
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+  }
+  .gallery :global(.studio-addresses > div) {
+    grid-template-columns: 5rem minmax(0, 1fr);
+    gap: 0.8rem;
+  }
+  .gallery :global(.studio-connection-links) {
+    gap: 1.5rem;
+  }
+}
+.gallery
+  :global(.platform-page-hero--about .platform-actions .platform-action) {
+  margin-top: 0;
+}
+.gallery :global(.studio-connections__grid article) {
+  display: flex;
+  flex-direction: column;
+}
+.gallery :global(.studio-connections__grid .studio-text-link) {
+  margin-top: auto;
+  align-self: flex-start;
+}
+@media (max-width: 767px) {
+  .gallery :global(.platform-page-hero--about .platform-actions) {
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .gallery
+    :global(.platform-page-hero--about .platform-actions .platform-action) {
+    gap: 1rem;
+  }
+}

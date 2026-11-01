@@ -15,8 +15,8 @@ export function BrandLockup({
     <span
       aria-hidden="true"
       className={[
-        "owner-lockup",
-        compact ? "owner-lockup--compact" : "",
+        "illustrated-lockup",
+        compact ? "illustrated-lockup--compact" : "",
         className,
       ]
         .filter(Boolean)
@@ -24,14 +24,16 @@ export function BrandLockup({
     >
       <Image
         alt=""
-        height={1402}
+        height={216}
         priority={priority}
-        src={withBasePath("/brand/owner-direction/Logo-reference.png")}
+        src={withBasePath("/brand/emblem-premium-heritage.svg")}
         unoptimized
-        width={1122}
+        width={216}
       />
       {!compact ? (
-        <span className="owner-lockup__tagline">Women Crafting Change</span>
+        <span className="illustrated-lockup__name">
+          THAR <em>TEXTILES</em>
+        </span>
       ) : null}
     </span>
   );

@@ -1,19 +1,37 @@
-import "@fontsource-variable/fraunces";
-import "@fontsource-variable/manrope";
+import localFont from "next/font/local";
 import type { Metadata, Viewport } from "next";
 import { verifiedBusiness } from "@/lib/content";
 import { withBasePath } from "@/lib/paths";
+import { directionFor } from "@/lib/i18n";
 import "./globals.css";
+import "./editorial.css";
+
+// Keep the approved typefaces; preload local files and size-adjust the fallback.
+const editorialFont = localFont({
+  src: "../../node_modules/@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2",
+  variable: "--font-editorial",
+  weight: "100 900",
+  display: "swap",
+  adjustFontFallback: "Times New Roman",
+});
+const readingFont = localFont({
+  src: "../../node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2",
+  variable: "--font-reading",
+  weight: "200 800",
+  display: "swap",
+  adjustFontFallback: "Arial",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(verifiedBusiness.website),
   title: {
-    default: `${verifiedBusiness.brandName} | ${verifiedBusiness.descriptor}`,
+    default: `${verifiedBusiness.brandName} | Textile craft from Tharparkar`,
     template: `%s | ${verifiedBusiness.brandName}`,
   },
-  description: verifiedBusiness.description,
+  description:
+    "Explore textile craft from Tharparkar, Sindh, and connect with Thar Textiles about products, wholesale, community work and collaboration.",
   applicationName: verifiedBusiness.brandName,
-  authors: [{ name: "Thar Textiles (Private) Limited" }],
+  authors: [{ name: "Thar Textiles" }],
   alternates: { canonical: "/" },
   keywords: [
     "Thar Textiles",
@@ -23,8 +41,9 @@ export const metadata: Metadata = {
     "Sindhi craft",
   ],
   openGraph: {
-    title: `${verifiedBusiness.brandName} | ${verifiedBusiness.descriptor}`,
-    description: verifiedBusiness.description,
+    title: `${verifiedBusiness.brandName} | Textile craft from Tharparkar`,
+    description:
+      "Explore textile craft from Tharparkar, Sindh, and connect with Thar Textiles.",
     type: "website",
     url: "/",
     locale: "en_GB",
@@ -40,21 +59,22 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${verifiedBusiness.brandName} | ${verifiedBusiness.descriptor}`,
-    description: verifiedBusiness.description,
+    title: `${verifiedBusiness.brandName} | Textile craft from Tharparkar`,
+    description:
+      "Explore textile craft from Tharparkar, Sindh, and connect with Thar Textiles.",
     images: ["/images/site-products/embroidered-shoulder-bag.jpeg"],
   },
   icons: {
     icon: [
       {
-        url: withBasePath("/brand/owner-direction/favicon.svg"),
-        type: "image/svg+xml",
+        url: withBasePath("/brand/emblem-premium-heritage-216.png"),
+        type: "image/png",
       },
     ],
     apple: [
       {
-        url: withBasePath("/brand/owner-direction/favicon.svg"),
-        type: "image/svg+xml",
+        url: withBasePath("/brand/emblem-premium-heritage-216.png"),
+        type: "image/png",
       },
     ],
   },
@@ -64,7 +84,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f7f3ec",
+  themeColor: "#ffffff",
   colorScheme: "light",
 };
 
@@ -77,12 +97,11 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: verifiedBusiness.brandName,
-    legalName: verifiedBusiness.legalName,
     url: verifiedBusiness.website,
     email: verifiedBusiness.email,
     telephone: `+${verifiedBusiness.phoneHref}`,
-    description: verifiedBusiness.description,
-    logo: `${verifiedBusiness.website}/brand/owner-direction/Logo-reference.png`,
+    description: "Textile craft from Tharparkar, Sindh.",
+    logo: `${verifiedBusiness.website}/brand/emblem-premium-heritage-216.png`,
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer enquiries",
@@ -93,7 +112,11 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      dir={directionFor("en")}
+      className={`${editorialFont.variable} ${readingFont.variable}`}
+    >
       <body>
         {children}
         <script

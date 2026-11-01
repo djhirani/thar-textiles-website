@@ -1,0 +1,21 @@
+{
+  "name": "thar-textiles-local-api",
+  "main": "backend/src/index.ts",
+  "compatibility_date": "2025-12-01",
+  "workers_dev": false,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "thar-textiles-local",
+      "database_id": "00000000-0000-0000-0000-000000000001",
+      "migrations_dir": "backend/migrations",
+    },
+  ],
+  "triggers": { "crons": ["*/5 * * * *"] },
+  "vars": {
+    "ENVIRONMENT": "local",
+    "ALLOWED_ORIGINS": "http://localhost:3000,http://127.0.0.1:3000",
+    "EMAIL_TRANSPORT": "test",
+    "CONSENT_VERSION": "stage-3c-draft-1",
+  },
+}

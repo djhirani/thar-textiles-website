@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   basePath,
   output: "export",
   poweredByHeader: false,
+  devIndicators: false,
   trailingSlash: true,
   images: {
     unoptimized: true,

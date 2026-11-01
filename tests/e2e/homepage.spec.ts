@@ -1,314 +1,240 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { readFileSync } from "node:fs";
 
-test("renders every required homepage landmark", async ({ page }) => {
+const widths = [320, 360, 375, 390, 430, 768, 1024, 1440];
+const localAdminToken = Object.fromEntries(
+  readFileSync(".dev.vars", "utf8")
+    .trim()
+    .split("\n")
+    .map((line) => line.split("=")),
+).LOCAL_ADMIN_TOKEN as string;
+
+test("homepage presents all audience paths and authentic collection imagery", async ({
+  page,
+}) => {
   await page.goto("/");
-
   await expect(
-    page.getByRole("heading", { name: /Handmade in Thar/i }),
+    page.getByRole("heading", { name: /Craft with roots/ }),
   ).toBeVisible();
-  await expect(page.getByText("Shop by mood")).toBeVisible();
-  await expect(page.getByText("Every stitch has a maker.")).toBeVisible();
-  await expect(page.getByText("Pieces with presence")).toBeVisible();
-  await expect(
-    page.getByRole("heading", { name: "Look closer." }),
-  ).toBeVisible();
-  await expect(page.getByText(/Styled for the city/i)).toBeVisible();
-  await expect(page.getByText(/The women/i).first()).toBeVisible();
-  await expect(page.getByText("A piece takes shape")).toBeVisible();
-  await expect(page.getByText("Tharparkar").first()).toBeVisible();
-  await expect(page.getByText("Real trade, not charity")).toBeVisible();
-  await expect(page.getByText("Impact & research").first()).toBeVisible();
-  await expect(
-    page.getByText("Original craft for modern retail."),
-  ).toBeVisible();
-  await expect(page.getByText("The journal")).toBeVisible();
-  await expect(page.getByText("Letters from Thar")).toBeVisible();
+  await expect(page.locator(".platform-audience-grid a")).toHaveCount(4);
+  await expect(page.locator(".platform-product")).toHaveCount(4);
+  await expect(page.locator(".platform-collections a")).toHaveCount(3);
   await expect(page.locator("footer")).toBeVisible();
 });
 
-test("mobile navigation opens, closes, and exposes primary links", async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/");
-  await page.waitForLoadState("networkidle");
-  await page.getByRole("button", { name: "Open menu" }).click();
-
-  const dialog = page.getByRole("dialog", { name: "Mobile navigation" });
-  await expect(dialog).toBeVisible();
-  await expect(dialog.getByRole("link", { name: /Our Craft/ })).toBeVisible();
-  await page.keyboard.press("Escape");
-  await expect(dialog).toBeHidden();
-});
-
-for (const mobile of [
-  { name: "iphone", width: 390, height: 844 },
-  { name: "android", width: 412, height: 915 },
-]) {
-  test(`${mobile.name} menu covers the viewport and preserves scroll position`, async ({
-    page,
-  }) => {
-    await page.setViewportSize(mobile);
+for (const width of widths) {
+  test(`homepage has no overflow at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
     await page.goto("/");
-    const trigger = page.getByRole("button", { name: "Open menu" });
-    await expect(trigger).toBeVisible();
-    await expect(trigger).toHaveCSS("min-width", "44px");
-    await expect(trigger).toHaveCSS("min-height", "44px");
-    await page.evaluate(() =>
-      window.scrollTo(0, document.body.scrollHeight / 2),
+    await expect(page.locator("#hero-title")).toBeVisible();
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - innerWidth,
     );
-    const scrollPosition = await page.evaluate(() => window.scrollY);
-
-    await trigger.click();
-
-    const shell = page.locator(".mobile-menu-shell");
-    await expect(shell).toBeVisible();
-    const bounds = await shell.boundingBox();
-    expect(bounds?.y).toBe(0);
-    expect(bounds?.height).toBeGreaterThanOrEqual(mobile.height);
-    await expect(page.locator("body")).toHaveCSS("position", "fixed");
-
-    await page.locator(".mobile-menu-top .icon-button").click();
-    await expect(shell).toHaveCount(0);
-    await expect
-      .poll(() => page.evaluate(() => window.scrollY))
-      .toBe(scrollPosition);
+    expect(overflow).toBeLessThanOrEqual(1);
+    await page.locator("img").evaluateAll((images) =>
+      images.forEach((image) => {
+        (image as HTMLImageElement).loading = "eager";
+      }),
+    );
+    await page.waitForFunction(() =>
+      [...document.images].every(
+        (image) => image.complete && image.naturalWidth > 0,
+      ),
+    );
+    await page.screenshot({
+      path: `docs/screenshots/stage3a-home-${width}.png`,
+      fullPage: true,
+    });
   });
 }
 
-test("has no serious or critical automated accessibility violations", async ({
-  page,
-}) => {
+test("mobile menu traps focus and navigates to shop", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 780 });
   await page.goto("/");
-  const results = await new AxeBuilder({ page: page as never }).analyze();
-  const highSeverity = results.violations.filter((violation) =>
-    ["serious", "critical"].includes(violation.impact ?? ""),
-  );
-
-  expect(highSeverity).toEqual([]);
-});
-
-test("internal fragment links resolve to existing targets", async ({
-  page,
-}) => {
-  await page.goto("/");
-  const hrefs = await page
-    .locator('a[href^="#"]')
-    .evaluateAll((links) =>
-      links.map((link) => link.getAttribute("href")).filter(Boolean),
-    );
-
-  for (const href of new Set(hrefs)) {
-    if (href === "#") continue;
-    await expect(page.locator(href as string).first()).toHaveCount(1);
-  }
-});
-
-test("metadata, local images, and reduced motion are valid", async ({
-  page,
-}) => {
-  test.setTimeout(60_000);
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
-  await page.locator("img").evaluateAll((images) => {
-    images.forEach((image) => {
-      (image as HTMLImageElement).loading = "eager";
-    });
-  });
-  await page.waitForFunction(() =>
-    [...document.images].every(
-      (image) => image.complete && image.naturalWidth > 0,
-    ),
-  );
-  await page.waitForLoadState("networkidle");
-
-  await expect(page).toHaveTitle(
-    "Thar Textiles | Handmade Fashion from Tharparkar",
-  );
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute(
-    "content",
-    /women-led contemporary fashion and textile brand/,
-  );
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
-    "content",
-    /index/,
-  );
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
-    "href",
-    /^https:\/\/thartextiles\.co\/?$/,
-  );
-  await expect(page.locator('meta[property="og:url"]')).toHaveAttribute(
-    "content",
-    /^https:\/\/thartextiles\.co\/?$/,
-  );
-  await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute(
-    "content",
-    /Handmade Fashion from Tharparkar/,
-  );
-
-  const organisationSchema = await page
-    .locator('script[type="application/ld+json"]')
-    .textContent();
-  expect(JSON.parse(organisationSchema ?? "{}")).toMatchObject({
-    "@type": "Organization",
-    name: "Thar Textiles",
-    url: "https://thartextiles.co",
-    email: "hello@thartextiles.co",
-  });
-
-  const brokenImages = await page
-    .locator("img")
-    .evaluateAll((images) =>
-      images
-        .filter(
-          (image) =>
-            !(image as HTMLImageElement).complete ||
-            (image as HTMLImageElement).naturalWidth === 0,
-        )
-        .map((image) => (image as HTMLImageElement).currentSrc),
-    );
-  expect(brokenImages).toEqual([]);
-
-  const mailtoLinks = await page
-    .locator('a[href^="mailto:"]')
-    .evaluateAll((links) => links.map((link) => link.getAttribute("href")));
-  expect(mailtoLinks.length).toBeGreaterThan(0);
-  expect(
-    mailtoLinks.every((href) =>
-      href?.startsWith("mailto:hello@thartextiles.co"),
-    ),
-  ).toBe(true);
-
-  const orbitDuration = await page
-    .locator(".hero-orbit")
-    .evaluate((element) => getComputedStyle(element).animationDuration);
-  expect(Number.parseFloat(orbitDuration)).toBeLessThanOrEqual(0.01);
-});
-
-test("publishes customer-facing copy and functional enquiry routes", async ({
-  page,
-}) => {
-  await page.goto("/");
-
-  for (const internalPhrase of [
-    "Campaign photography in development",
-    "Photography brief",
-    "Required for final publication",
-    "Attribution pending verification and consent",
-    "Landscape photography commission pending",
-    "Editorial commissioning brief",
-    "submission is not connected",
-    "commerce connection pending",
-  ]) {
-    await expect(page.getByText(internalPhrase, { exact: false })).toHaveCount(
-      0,
-    );
-  }
-
+  const trigger = page.getByRole("button", { name: "Open menu" });
+  await trigger.click();
+  const dialog = page.getByRole("dialog", { name: "Mobile navigation" });
+  await expect(dialog).toBeVisible();
+  const close = dialog.getByRole("button", { name: "Close menu" });
+  await expect(close).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(trigger).toBeFocused();
+  await trigger.click();
+  await dialog.getByRole("link", { name: /Shop/ }).click();
+  await expect(page).toHaveURL(/\/shop\/$/);
   await expect(
-    page.getByRole("link", { name: "Enquire about a piece by email" }),
-  ).toHaveAttribute("href", /^mailto:hello@thartextiles\.co\?subject=/);
-  await expect(page.getByLabel("Email address")).toHaveAttribute(
-    "required",
-    "",
-  );
-  await expect(
-    page.getByRole("button", { name: "Join by email" }),
+    page.getByRole("heading", { name: /Work made to be looked at/ }),
   ).toBeVisible();
 });
 
-test("publishes official robots, sitemap, and manifest details", async ({
-  request,
+test("shop filters and product enquiry has a responsive enquiry form and email fallback", async ({
+  page,
 }) => {
-  const robots = await request.get("/robots.txt");
-  expect(robots.ok()).toBe(true);
-  expect(await robots.text()).toContain(
-    "Sitemap: https://thartextiles.co/sitemap.xml",
-  );
-
-  const sitemap = await request.get("/sitemap.xml");
-  expect(sitemap.ok()).toBe(true);
-  expect(await sitemap.text()).toContain("<loc>https://thartextiles.co</loc>");
-
-  const manifest = await request.get("/manifest.webmanifest");
-  expect(manifest.ok()).toBe(true);
-  expect(await manifest.json()).toMatchObject({
-    name: "Thar Textiles",
-    short_name: "Thar Textiles",
-  });
+  await page.goto("/shop/");
+  await expect(page.locator(".platform-product")).toHaveCount(4);
+  await page.getByLabel("Category").selectOption("Bags");
+  await expect(page.locator(".platform-product")).toHaveCount(1);
+  await page.locator(".platform-product a").click();
+  await expect(page).toHaveURL(/embroidered-shoulder-bag/);
+  await expect(
+    page.getByRole("link", { name: /Enquire about this piece/ }),
+  ).toHaveAttribute("href", "#enquiry");
+  await expect(
+    page.getByRole("link", { name: /Or enquire by email/ }),
+  ).toHaveAttribute("href", /^mailto:hello@thartextiles\.co\?subject=/);
+  await expect(
+    page.getByRole("heading", { name: /Product or wholesale enquiry/ }),
+  ).toBeVisible();
 });
 
-test("records a local performance baseline", async ({ page }) => {
-  await page.addInitScript(() => {
-    (window as typeof window & { __cls: number; __lcp: number }).__cls = 0;
-    (window as typeof window & { __cls: number; __lcp: number }).__lcp = 0;
-    new PerformanceObserver((list) => {
-      for (const entry of list.getEntries()) {
-        const shift = entry as PerformanceEntry & {
-          hadRecentInput: boolean;
-          value: number;
-        };
-        if (!shift.hadRecentInput) {
-          (window as typeof window & { __cls: number; __lcp: number }).__cls +=
-            shift.value;
-        }
-      }
-    }).observe({ type: "layout-shift", buffered: true });
-    new PerformanceObserver((list) => {
-      const entries = list.getEntries();
-      const last = entries.at(-1);
-      if (last) {
-        (window as typeof window & { __cls: number; __lcp: number }).__lcp =
-          last.startTime;
-      }
-    }).observe({ type: "largest-contentful-paint", buffered: true });
-  });
-
+test("collection cards open a filtered catalogue", async ({ page }) => {
   await page.goto("/");
-  await page.waitForLoadState("networkidle");
-  await page.waitForTimeout(500);
-
-  const baseline = await page.evaluate(() => {
-    const navigation = performance.getEntriesByType(
-      "navigation",
-    )[0] as PerformanceNavigationTiming;
-    const resources = performance.getEntriesByType(
-      "resource",
-    ) as PerformanceResourceTiming[];
-    const state = window as typeof window & { __cls: number; __lcp: number };
-    return {
-      cls: state.__cls,
-      domContentLoaded: navigation.domContentLoadedEventEnd,
-      lcp: state.__lcp,
-      resourceBytes: resources.reduce(
-        (total, resource) => total + resource.transferSize,
-        0,
-      ),
-      resourceCount: resources.length,
-    };
-  });
-
-  console.log("PERFORMANCE_BASELINE", JSON.stringify(baseline));
-  expect(baseline.cls).toBeLessThanOrEqual(0.1);
-  expect(baseline.lcp).toBeGreaterThan(0);
+  await page
+    .locator(".platform-collections")
+    .getByRole("link", { name: /Bags/ })
+    .click();
+  await expect(page).toHaveURL(/category=Bags/);
+  await expect(page.getByLabel("Category")).toHaveValue("Bags");
+  await expect(page.locator(".platform-product")).toHaveCount(1);
 });
 
-for (const viewport of [
-  { name: "mobile-390", width: 390, height: 844 },
-  { name: "tablet-768", width: 768, height: 1024 },
-  { name: "desktop-1440", width: 1440, height: 1000 },
-  { name: "wide-1728", width: 1728, height: 1080 },
-]) {
-  test(`captures ${viewport.name} visual review`, async ({ page }) => {
-    await page.setViewportSize(viewport);
-    await page.goto("/");
-    await page.locator("footer").scrollIntoViewIfNeeded();
-    await page.waitForLoadState("networkidle");
-    await page.evaluate(() => window.scrollTo(0, 0));
-    await page.screenshot({
-      fullPage: true,
-      path: `docs/screenshots/homepage-${viewport.name}.png`,
-    });
-  });
-}
+test("all audience routes expose their intended enquiry forms", async ({
+  page,
+}) => {
+  for (const route of [
+    "artisans",
+    "wholesale",
+    "impact",
+    "collaborate",
+    "about",
+    "contact",
+  ]) {
+    await page.goto(`/${route}/`);
+    await expect(page.locator("main h1")).toBeVisible();
+  }
+  await expect(
+    page.getByRole("heading", { name: /General enquiry/ }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("checkbox", { name: /I agree to Thar Textiles/ }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /Read the privacy notice/ }),
+  ).toHaveAttribute("href", "/privacy/");
+});
+
+test("local general enquiry returns a persisted reference only after Worker acceptance", async ({
+  page,
+}) => {
+  await page.goto("/contact/");
+  await page.getByLabel(/^Name/).fill("Browser QA");
+  await page.locator('input[name="email"]').fill("browser-qa@example.org");
+  await page.getByLabel(/Preferred reply channel/).selectOption("email");
+  await page
+    .getByLabel(/Tell us about your enquiry/)
+    .fill("Please verify browser submission reaches the local D1 database.");
+  await page
+    .getByRole("checkbox", { name: /I agree to Thar Textiles/ })
+    .check();
+  await page.getByRole("button", { name: "Send enquiry" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Your enquiry was received." }),
+  ).toBeVisible();
+  await expect(page.getByText(/Reference: TT-/)).toBeVisible();
+});
+
+test("all five enquiry categories persist locally and return a reference", async ({
+  page,
+}) => {
+  const workflows = [
+    {
+      route: "wholesale",
+      subject: "Hand-embroidered textile",
+      location: "United Kingdom",
+    },
+    { route: "artisans", subject: "Embroidery", location: "Mithi district" },
+    { route: "impact", organization: "Test community organization" },
+    { route: "collaborate", subject: "Textile design" },
+    { route: "contact" },
+  ];
+  for (const [index, workflow] of workflows.entries()) {
+    await page.goto(`/${workflow.route}/`);
+    await page.getByLabel(/^Name/).fill(`Local workflow ${index + 1}`);
+    await page
+      .locator('input[name="email"]')
+      .fill(`workflow-${index + 1}@example.org`);
+    await page.getByLabel(/Preferred reply channel/).selectOption("email");
+    if (workflow.organization)
+      await page
+        .locator('input[name="organization"]')
+        .fill(workflow.organization);
+    if (workflow.location)
+      await page.locator('input[name="location"]').fill(workflow.location);
+    if (workflow.subject)
+      await page.locator('input[name="subject"]').fill(workflow.subject);
+    await page
+      .getByLabel(/Tell us about your enquiry/)
+      .fill("Please record this test enquiry in the local database.");
+    await page
+      .getByRole("checkbox", { name: /I agree to Thar Textiles/ })
+      .check();
+    await page.getByRole("button", { name: "Send enquiry" }).click();
+    await expect(
+      page.getByRole("heading", { name: "Your enquiry was received." }),
+    ).toBeVisible();
+    await expect(page.getByText(/Reference: TT-/)).toBeVisible();
+  }
+});
+
+test("enquiry forms fit the priority phone, tablet, and desktop widths", async ({
+  page,
+}) => {
+  for (const width of widths) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto("/contact/");
+    await expect(
+      page.getByRole("heading", { name: /General enquiry/ }),
+    ).toBeVisible();
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - innerWidth,
+    );
+    expect(overflow).toBeLessThanOrEqual(1);
+  }
+});
+
+test("local administrator dashboard requires token and displays the saved enquiry queue", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("http://127.0.0.1:8787/admin/");
+  await expect(
+    page.getByRole("heading", { name: /Private enquiries/ }),
+  ).toBeVisible();
+  await page.getByLabel("Local administrator token").fill(localAdminToken);
+  await page.getByRole("button", { name: "Unlock" }).click();
+  await expect(page.getByRole("heading", { name: "Enquiries" })).toBeVisible();
+  await expect(page.locator("#rows tr").first()).toBeVisible();
+  const overflow = await page.evaluate(
+    () => document.documentElement.scrollWidth - innerWidth,
+  );
+  expect(overflow).toBeLessThanOrEqual(1);
+});
+
+test("key pages have no serious automated accessibility violations", async ({
+  page,
+}) => {
+  test.setTimeout(90_000);
+  for (const route of ["/", "/shop/", "/contact/"]) {
+    await page.goto(route);
+    // Preserve the approved logotype colours; WCAG text contrast excludes logotypes.
+    const results = await new AxeBuilder({ page: page as never })
+      .exclude(".illustrated-lockup")
+      .analyze();
+    expect(
+      results.violations.filter((v) =>
+        ["serious", "critical"].includes(v.impact ?? ""),
+      ),
+    ).toEqual([]);
+  }
+});

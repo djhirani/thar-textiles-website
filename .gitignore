@@ -9,6 +9,7 @@ node_modules/
 
 # Framework and build output
 .next/
+.wrangler/
 out/
 dist/
 build/
@@ -20,6 +21,8 @@ test-results/
 # Local configuration and secrets
 .env
 .env.*
+.dev.vars
+wrangler.*.private.jsonc
 !.env.example
 *.local
 .npmrc
@@ -66,7 +69,12 @@ tests/e2e/logo-review-board.spec.ts
 tests/e2e/logo-selection.spec.ts
 tests/e2e/logo-system.spec.ts
 public/brand/*
+!public/brand/emblem-216.png
+!public/brand/emblem-premium-heritage.svg
+!public/brand/emblem-premium-heritage-216.png
 !public/brand/owner-direction/
 !public/brand/owner-direction/**
 public/images/source-products/
 public/images/derived-products/
+!public/images/editorial/
+!public/images/editorial/**

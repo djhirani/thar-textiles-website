@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { HomeExperience } from "@/components/home-experience";
 import { enquiryHref, products } from "@/lib/content";
 import { withBasePath } from "@/lib/paths";
 import { SiteFooter } from "@/components/site-footer";
@@ -51,6 +52,10 @@ const moods = [
 ];
 
 export default function Home() {
+  return <HomeExperience />;
+}
+
+function PreviousHome() {
   return (
     <>
       <a className="skip-link" href="#main">
@@ -161,7 +166,7 @@ export default function Home() {
                       <Image
                         alt=""
                         fill
-                        sizes="(max-width: 639px) 88vw, (max-width: 1023px) 44vw, 22vw"
+                        sizes="(max-width: 430px) 88vw, (max-width: 639px) 44vw, (max-width: 1023px) 44vw, 22vw"
                         src={mood.image}
                       />
                     </div>
@@ -219,7 +224,7 @@ export default function Home() {
                       <Image
                         alt={product.imageAlt}
                         fill
-                        sizes="(max-width: 639px) 44vw, (max-width: 1023px) 30vw, 22vw"
+                        sizes="(max-width: 430px) 88vw, (max-width: 639px) 44vw, (max-width: 1023px) 30vw, 22vw"
                         src={product.image}
                       />
                       <span className="product-state">By enquiry</span>
@@ -567,3 +572,5 @@ export default function Home() {
     </>
   );
 }
+
+void PreviousHome;
