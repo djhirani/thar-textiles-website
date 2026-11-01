@@ -1,3 +1,4 @@
+import { LinkArrow } from "./link-arrow";
 import { TextileImage } from "./textile-image";
 import Link from "next/link";
 import { catalogue } from "@/lib/platform";
@@ -39,7 +40,7 @@ export function Action({
   const content = (
     <>
       {children}
-      <span aria-hidden="true">↗</span>
+      <LinkArrow />
     </>
   );
   return href.startsWith("/") ? (
@@ -87,7 +88,9 @@ export function ProductCards({
               />
               <div className="platform-product__meta">
                 <span>{item.category}</span>
-                <span>View piece ↗</span>
+                <span>
+                  View piece <LinkArrow />
+                </span>
               </div>
               <h3>{item.title}</h3>
               <p>Details and availability by enquiry</p>

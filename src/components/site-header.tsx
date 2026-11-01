@@ -1,5 +1,7 @@
 "use client";
 
+import { LinkArrow } from "./link-arrow";
+
 import { navigation } from "@/lib/content";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -38,7 +40,7 @@ export function SiteHeader() {
           </nav>
           <div className="header-actions">
             <Link className="header-contact" href="/contact/">
-              Enquire <span aria-hidden="true">↗</span>
+              Enquire <LinkArrow />
             </Link>
           </div>
         </Container>

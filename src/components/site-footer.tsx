@@ -1,3 +1,4 @@
+import { LinkArrow } from "./link-arrow";
 import { verifiedBusiness } from "@/lib/content";
 import Link from "next/link";
 import { BrandLockup } from "./brand-lockup";
@@ -45,7 +46,7 @@ export function SiteFooter({ darkAccent = true }: { darkAccent?: boolean }) {
             </p>
           </div>
           <Link className="platform-footer__cta" href="/contact/">
-            Start a conversation <span aria-hidden="true">↗</span>
+            Start a conversation <LinkArrow />
           </Link>
         </div>
         <div className="platform-footer__grid">

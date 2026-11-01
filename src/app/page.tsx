@@ -1,3 +1,4 @@
+import { LinkArrow } from "@/components/link-arrow";
 import Image from "next/image";
 import { HomeExperience } from "@/components/home-experience";
 import { enquiryHref, products } from "@/lib/content";
@@ -234,7 +235,7 @@ function PreviousHome() {
                         <p>{product.category}</p>
                         <h3>{product.title}</h3>
                       </div>
-                      <span aria-hidden="true">↗</span>
+                      <LinkArrow />
                     </div>
                     <p className="product-note">{product.note}</p>
                   </a>

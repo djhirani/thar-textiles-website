@@ -1,5 +1,7 @@
 "use client";
 
+import { LinkArrow } from "./link-arrow";
+
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { verifiedBusiness } from "@/lib/content";
 import Link from "next/link";
@@ -213,13 +215,13 @@ export function EnquiryForm({
                   className="platform-action"
                   href={`mailto:${verifiedBusiness.email}?subject=${encodeURIComponent(productTitle ? `Product enquiry: ${productTitle}` : labels[kind])}`}
                 >
-                  Email the team <span aria-hidden="true">↗</span>
+                  Email the team <LinkArrow />
                 </a>
                 <a
                   className="platform-action platform-action--secondary"
                   href={`tel:+${verifiedBusiness.phoneHref}`}
                 >
-                  Call the team <span aria-hidden="true">↗</span>
+                  Call the team <LinkArrow />
                 </a>
               </div>
             </div>

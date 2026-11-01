@@ -1,4 +1,6 @@
 "use client";
+
+import { LinkArrow } from "./link-arrow";
 import { useMemo, useState } from "react";
 import { TextileImage } from "./textile-image";
 import Link from "next/link";
@@ -70,7 +72,9 @@ export function CatalogueSearch() {
               </div>
               <div className="platform-product__meta">
                 <span>{item.category}</span>
-                <span>View piece ↗</span>
+                <span>
+                  View piece <LinkArrow />
+                </span>
               </div>
               <h3>{item.title}</h3>
               <p>Details and availability by enquiry</p>

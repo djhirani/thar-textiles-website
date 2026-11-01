@@ -1,3 +1,4 @@
+import { LinkArrow } from "@/components/link-arrow";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PlatformShell } from "@/components/platform-shell";
@@ -127,7 +128,7 @@ export default async function SectionPage({
               ].map(([label, href]) => (
                 <a key={label} href={href}>
                   {label}
-                  <span aria-hidden="true">↗</span>
+                  <LinkArrow />
                 </a>
               ))}
             </div>
@@ -263,8 +264,7 @@ export default async function SectionPage({
                   className="studio-text-link"
                   href={`tel:+${verifiedBusiness.phoneHref}`}
                 >
-                  Call {verifiedBusiness.phoneDisplay}{" "}
-                  <span aria-hidden="true">↗</span>
+                  Call {verifiedBusiness.phoneDisplay} <LinkArrow />
                 </a>
               </article>
               <article>
@@ -287,7 +287,7 @@ export default async function SectionPage({
                   className="studio-text-link"
                   href={`mailto:${verifiedBusiness.email}`}
                 >
-                  {verifiedBusiness.email} <span aria-hidden="true">↗</span>
+                  {verifiedBusiness.email} <LinkArrow />
                 </a>
               </article>
             </div>

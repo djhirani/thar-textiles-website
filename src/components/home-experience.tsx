@@ -1,12 +1,9 @@
 import Link from "next/link";
+import { LinkArrow as Arrow } from "./link-arrow";
 import { PlatformShell } from "./platform-shell";
 import { TextileImage } from "./textile-image";
 import { catalogue, collectionCards } from "@/lib/platform";
 import styles from "./home-experience.module.css";
-
-function Arrow() {
-  return <span aria-hidden="true">↗</span>;
-}
 
 export function HomeExperience() {
   return (
