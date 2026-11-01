@@ -6,11 +6,11 @@ test("illustrated emblem appears in header, footer and icon", async ({
 }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");
-  await expect(page.locator(".brand-logo__lockup img")).toHaveAttribute(
+  await expect(page.locator(".tt-header .tt-brand img")).toHaveAttribute(
     "src",
     /emblem-premium-heritage\.svg/,
   );
-  await expect(page.locator(".platform-footer__brand img")).toHaveAttribute(
+  await expect(page.locator(".tt-footer__brand img")).toHaveAttribute(
     "src",
     /emblem-premium-heritage\.svg/,
   );
@@ -19,7 +19,7 @@ test("illustrated emblem appears in header, footer and icon", async ({
     /icon\.png|emblem-premium-heritage-216\.png/,
   );
   await page.setViewportSize({ width: 390, height: 844 });
-  await expect(page.locator(".brand-logo__symbol img")).toBeVisible();
+  await expect(page.locator(".tt-header .tt-brand img")).toBeVisible();
 });
 
 test("approved original emblem is consistent across every frontend page", async ({
@@ -55,7 +55,7 @@ test("approved original emblem is consistent across every frontend page", async 
           .toBe(true);
       }
     }
-    await expect(page.locator(".site-header .header-contact")).toHaveAttribute(
+    await expect(page.locator(".tt-header__enquire")).toHaveAttribute(
       "href",
       "/contact/",
     );
@@ -66,12 +66,12 @@ test("approved original emblem is consistent across every frontend page", async 
     await page.screenshot({
       path: `docs/approved-logo-implementation/screenshots/website-${width}.png`,
     });
-    await page.locator(".site-header").screenshot({
+    await page.locator(".tt-header").screenshot({
       path: `docs/approved-logo-implementation/screenshots/header-${width}.png`,
     });
   }
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.locator(".platform-footer").screenshot({
+  await page.locator(".tt-footer").screenshot({
     path: "docs/approved-logo-implementation/screenshots/footer.png",
   });
 });

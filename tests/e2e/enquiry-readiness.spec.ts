@@ -14,7 +14,7 @@ for (const [route, heading] of [
     await expect(
       page.getByRole("heading", { name: heading, exact: true }),
     ).toBeVisible();
-    const form = page.locator(".platform-enquiry form");
+    const form = page.locator(".tt-enquiry form");
     expect(
       await form.evaluate((element: HTMLFormElement) =>
         element.checkValidity(),

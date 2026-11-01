@@ -5,10 +5,21 @@ import { withBasePath } from "@/lib/paths";
 import { directionFor } from "@/lib/i18n";
 import "./globals.css";
 import "./editorial.css";
+import "./thar.css";
 
 // Keep the approved typefaces; preload local files and size-adjust the fallback.
+// The optical-size build keeps Fraunces fine at display sizes and sturdy small.
 const editorialFont = localFont({
-  src: "../../node_modules/@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2",
+  src: [
+    {
+      path: "../../node_modules/@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2",
+      style: "normal",
+    },
+    {
+      path: "../../node_modules/@fontsource-variable/fraunces/files/fraunces-latin-opsz-italic.woff2",
+      style: "italic",
+    },
+  ],
   variable: "--font-editorial",
   weight: "100 900",
   display: "swap",

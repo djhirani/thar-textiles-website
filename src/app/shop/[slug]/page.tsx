@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PlatformShell } from "@/components/platform-shell";
-import { Action, Eyebrow, ProductCards } from "@/components/platform-ui";
+import { Crumbs, ProductCard, productPhoto } from "@/components/thar-ui";
+import { LinkArrow } from "@/components/link-arrow";
 import { ProductGallery } from "@/components/product-gallery";
 import { catalogue } from "@/lib/platform";
 import { verifiedBusiness } from "@/lib/content";
@@ -31,33 +32,40 @@ export default async function ProductPage({
   const { slug } = await params;
   const item = catalogue.find((item) => item.slug === slug);
   if (!item) notFound();
+  const photo = productPhoto(item);
   return (
     <PlatformShell>
-      <div className="platform-wrap">
-        <nav className="platform-breadcrumb" aria-label="Breadcrumb">
-          <Link href="/shop/">Shop & collections</Link>
-          <span aria-hidden="true">/</span>
-          <span>{item.title}</span>
-        </nav>
-        <div className="platform-pdp">
-          <ProductGallery images={item.gallery} alt={item.imageAlt} />
-          <div className="platform-pdp__copy">
-            <Eyebrow>{item.category} · Tharparkar, Pakistan</Eyebrow>
-            <h1>{item.title}</h1>
-            <p className="studio-product-description">{item.description}</p>
-            <p>
+      <div className="tt-wrap tt-pdp-wrap">
+        <Crumbs
+          current={item.title}
+          trail={[{ label: "Shop & collections", href: "/shop/" }]}
+        />
+        <div className="tt-pdp">
+          <ProductGallery
+            images={[photo.src]}
+            alt={item.imageAlt}
+            ratio={photo.ratio}
+          />
+          <div className="tt-pdp__copy">
+            <p className="tt-eyebrow">{item.category} · Tharparkar, Pakistan</p>
+            <h1 className="tt-title">{item.title}</h1>
+            <p className="tt-pdp__description">{item.description}</p>
+            <p className="tt-pdp__ask">
               Ask about sizing or dimensions, care, current availability and
               delivery to your city or country.
             </p>
-            <Action href="#enquiry">Enquire about this piece</Action>
-            <p>
+            <div className="tt-actions">
+              <a className="tt-button" href="#enquiry">
+                Enquire about this piece <LinkArrow />
+              </a>
               <a
+                className="tt-link"
                 href={`mailto:${verifiedBusiness.email}?subject=${encodeURIComponent(`Product enquiry: ${item.title} (${item.slug})`)}`}
               >
                 Or enquire by email
               </a>
-            </p>
-            <div className="platform-pdp__facts">
+            </div>
+            <div className="tt-facts">
               <h2>Before you order</h2>
               <dl>
                 <div>
@@ -77,13 +85,34 @@ export default async function ProductPage({
           </div>
         </div>
       </div>
-      <section className="platform-section platform-section--paper">
-        <div className="platform-wrap">
-          <div className="platform-heading">
-            <Eyebrow>More to explore</Eyebrow>
-            <h2>Continue through the collection.</h2>
+      <section
+        className="tt-section tt-section--stone"
+        aria-labelledby="more-title"
+      >
+        <div className="tt-wrap">
+          <div className="tt-section-head">
+            <div>
+              <p className="tt-eyebrow">More to explore</p>
+              <h2 id="more-title" className="tt-heading">
+                Continue through the collection.
+              </h2>
+            </div>
+            <Link className="tt-link" href="/shop/">
+              Shop &amp; collections <LinkArrow />
+            </Link>
           </div>
-          <ProductCards count={3} excludeSlug={item.slug} />
+          <div className="tt-grid tt-grid--three">
+            {catalogue
+              .filter((other) => other.slug !== item.slug)
+              .map((other) => (
+                <ProductCard
+                  key={other.slug}
+                  item={other}
+                  index={catalogue.indexOf(other)}
+                  sizes="(max-width: 767px) calc((100vw - 44px) / 2), (max-width: 1480px) calc((100vw - 144px) / 3), 448px"
+                />
+              ))}
+          </div>
         </div>
       </section>
       <EnquiryForm

@@ -182,17 +182,17 @@ export function EnquiryForm({
     }
   }
   return (
-    <section className="platform-enquiry" id="enquiry">
-      <div className="platform-wrap platform-enquiry__grid">
-        <div>
-          <p className="platform-eyebrow">Start a conversation</p>
-          <h2>{labels[kind]}</h2>
+    <section className="tt-enquiry" id="enquiry">
+      <div className="tt-wrap tt-enquiry__grid">
+        <div className="tt-enquiry__intro">
+          <p className="tt-eyebrow">Start a conversation</p>
+          <h2 className="tt-heading">{labels[kind]}</h2>
           <p>
             {api
               ? "Share only what is needed for the team to reply. A submitted enquiry does not confirm a price, partnership, registration, or availability."
               : "Contact the team directly. Include your topic, city or country, and any product details so we can help with your enquiry."}
           </p>
-          <p>
+          <p className="tt-enquiry__direct">
             <a href={`mailto:${verifiedBusiness.email}`}>
               Email {verifiedBusiness.email}
             </a>
@@ -202,23 +202,23 @@ export function EnquiryForm({
             </a>
           </p>
         </div>
-        <div className="platform-enquiry__card">
+        <div className="tt-enquiry__card">
           {!api ? (
-            <div className="direct-enquiry">
+            <div className="tt-enquiry__fallback">
               <h3>Let’s talk directly.</h3>
               <p>
                 Online enquiry forms are currently unavailable. Please email or
                 call the team.
               </p>
-              <div className="platform-actions">
+              <div className="tt-actions">
                 <a
-                  className="platform-action"
+                  className="tt-button"
                   href={`mailto:${verifiedBusiness.email}?subject=${encodeURIComponent(productTitle ? `Product enquiry: ${productTitle}` : labels[kind])}`}
                 >
                   Email the team <LinkArrow />
                 </a>
                 <a
-                  className="platform-action platform-action--secondary"
+                  className="tt-button tt-button--quiet"
                   href={`tel:+${verifiedBusiness.phoneHref}`}
                 >
                   Call the team <LinkArrow />
@@ -248,7 +248,7 @@ export function EnquiryForm({
                   setMessage(`${label}: ${field.validationMessage}`);
                 }}
               >
-                <div className="platform-enquiry__fields">
+                <div className="tt-enquiry__fields">
                   <label>
                     Name{" "}
                     <input
@@ -362,13 +362,13 @@ export function EnquiryForm({
                     rows={5}
                   />
                 </label>
-                <div className="platform-enquiry__trap" aria-hidden="true">
+                <div className="tt-enquiry__trap" aria-hidden="true">
                   <label>
                     Website{" "}
                     <input name="website" tabIndex={-1} autoComplete="off" />
                   </label>
                 </div>
-                <label className="platform-enquiry__consent">
+                <label className="tt-enquiry__consent">
                   <input type="checkbox" name="consent" required /> I agree to
                   Thar Textiles using these details to respond to this enquiry.{" "}
                   <Link href="/privacy/">Read the privacy notice.</Link>
@@ -388,6 +388,7 @@ export function EnquiryForm({
                 )}
                 {message && <p role="alert">{message}</p>}
                 <button
+                  className="tt-button"
                   type="submit"
                   disabled={
                     !hydrated || !api || !verification || state === "sending"

@@ -14,12 +14,10 @@ test("homepage presents all audience paths and authentic collection imagery", as
   page,
 }) => {
   await page.goto("/");
-  await expect(
-    page.getByRole("heading", { name: /Craft with roots/ }),
-  ).toBeVisible();
-  await expect(page.locator(".platform-audience-grid a")).toHaveCount(4);
-  await expect(page.locator(".platform-product")).toHaveCount(4);
-  await expect(page.locator(".platform-collections a")).toHaveCount(3);
+  await expect(page.getByRole("heading", { name: /From Thar/ })).toBeVisible();
+  await expect(page.locator(".tt-invite__links a")).toHaveCount(3);
+  await expect(page.locator(".tt-card")).toHaveCount(4);
+  await expect(page.locator(".tt-chips a")).toHaveCount(3);
   await expect(page.locator("footer")).toBeVisible();
 });
 
@@ -64,7 +62,7 @@ test("mobile menu traps focus and navigates to shop", async ({ page }) => {
   await dialog.getByRole("link", { name: /Shop/ }).click();
   await expect(page).toHaveURL(/\/shop\/$/);
   await expect(
-    page.getByRole("heading", { name: /Work made to be looked at/ }),
+    page.getByRole("heading", { name: /Craft to wear/ }),
   ).toBeVisible();
 });
 
@@ -72,10 +70,14 @@ test("shop filters and product enquiry has a responsive enquiry form and email f
   page,
 }) => {
   await page.goto("/shop/");
-  await expect(page.locator(".platform-product")).toHaveCount(4);
-  await page.getByLabel("Category").selectOption("Bags");
-  await expect(page.locator(".platform-product")).toHaveCount(1);
-  await page.locator(".platform-product a").click();
+  await expect(page.locator(".tt-card")).toHaveCount(4);
+  await page.getByRole("button", { name: /^Bags/ }).click();
+  await expect(page.locator(".tt-card")).toHaveCount(1);
+  await page.getByLabel("Search the collection").fill("kurta");
+  await expect(page.locator(".tt-card")).toHaveCount(0);
+  await expect(page.getByRole("status")).toHaveText("0 pieces shown");
+  await page.getByLabel("Search the collection").fill("");
+  await page.locator(".tt-card a").click();
   await expect(page).toHaveURL(/embroidered-shoulder-bag/);
   await expect(
     page.getByRole("link", { name: /Enquire about this piece/ }),
@@ -90,13 +92,13 @@ test("shop filters and product enquiry has a responsive enquiry form and email f
 
 test("collection cards open a filtered catalogue", async ({ page }) => {
   await page.goto("/");
-  await page
-    .locator(".platform-collections")
-    .getByRole("link", { name: /Bags/ })
-    .click();
+  await page.locator(".tt-chips").getByRole("link", { name: /Bags/ }).click();
   await expect(page).toHaveURL(/category=Bags/);
-  await expect(page.getByLabel("Category")).toHaveValue("Bags");
-  await expect(page.locator(".platform-product")).toHaveCount(1);
+  await expect(page.getByRole("button", { name: /^Bags/ })).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+  await expect(page.locator(".tt-card")).toHaveCount(1);
 });
 
 test("all audience routes expose their intended enquiry forms", async ({
@@ -225,7 +227,18 @@ test("key pages have no serious automated accessibility violations", async ({
   page,
 }) => {
   test.setTimeout(90_000);
-  for (const route of ["/", "/shop/", "/contact/"]) {
+  for (const route of [
+    "/",
+    "/shop/",
+    "/shop/embroidered-shoulder-bag/",
+    "/about/",
+    "/artisans/",
+    "/wholesale/",
+    "/impact/",
+    "/collaborate/",
+    "/contact/",
+    "/privacy/",
+  ]) {
     await page.goto(route);
     // Preserve the approved logotype colours; WCAG text contrast excludes logotypes.
     const results = await new AxeBuilder({ page: page as never })

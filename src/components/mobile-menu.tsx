@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { navigation, verifiedBusiness } from "@/lib/content";
+import { verifiedBusiness } from "@/lib/content";
+import { isCurrentRoute, primaryNavigation } from "@/lib/nav";
 import { BrandLockup } from "./brand-lockup";
 import { CloseIcon, MenuIcon } from "./icons";
 
@@ -102,7 +103,7 @@ export function MobileMenu() {
         aria-controls="mobile-navigation"
         aria-label="Open menu"
         aria-haspopup="dialog"
-        className="icon-button mobile-menu-trigger"
+        className="tt-menu-trigger"
         onClick={() => {
           returnFocus.current = true;
           restoreScroll.current = true;
@@ -110,14 +111,14 @@ export function MobileMenu() {
         }}
         type="button"
       >
-        <MenuIcon className="icon" />
+        <MenuIcon className="tt-icon" />
         <span>Menu</span>
       </button>
       {open ? (
-        <div className="mobile-menu-shell" role="presentation">
+        <div className="tt-menu" role="presentation">
           <button
             aria-label="Close menu"
-            className="mobile-menu-backdrop"
+            className="tt-menu__backdrop"
             onClick={() => closeMenu()}
             type="button"
           />
@@ -125,30 +126,30 @@ export function MobileMenu() {
             ref={menuRef}
             aria-label="Mobile navigation"
             aria-modal="true"
-            className="mobile-menu"
+            className="tt-menu__sheet"
             id="mobile-navigation"
             role="dialog"
           >
-            <div className="mobile-menu-top">
-              <BrandLockup className="mobile-menu-brand" />
+            <div className="tt-menu__top">
+              <BrandLockup className="tt-brand__lockup" />
               <button
                 ref={closeButton}
                 aria-label="Close menu"
-                className="icon-button"
+                className="tt-menu__close"
                 onClick={() => closeMenu()}
                 type="button"
               >
-                <CloseIcon className="icon" />
+                <CloseIcon className="tt-icon" />
               </button>
             </div>
             <nav aria-label="Mobile">
-              <ul className="mobile-menu-links">
-                {navigation.map((item, index) => (
+              <ul className="tt-menu__links">
+                {primaryNavigation.map((item, index) => (
                   <li key={item.label}>
                     <Link
                       href={item.href}
                       aria-current={
-                        pathname?.startsWith(item.href) ? "page" : undefined
+                        isCurrentRoute(pathname, item.href) ? "page" : undefined
                       }
                       onClick={() => closeMenu(true)}
                     >
@@ -159,10 +160,13 @@ export function MobileMenu() {
                 ))}
               </ul>
             </nav>
-            <div className="mobile-menu-footer">
+            <div className="tt-menu__footer">
               <p>{verifiedBusiness.descriptor}</p>
               <a href={`mailto:${verifiedBusiness.email}`}>
                 {verifiedBusiness.email}
+              </a>
+              <a href={`tel:+${verifiedBusiness.phoneHref}`}>
+                {verifiedBusiness.phoneDisplay}
               </a>
             </div>
           </div>

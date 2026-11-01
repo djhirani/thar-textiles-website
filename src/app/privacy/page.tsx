@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PlatformShell } from "@/components/platform-shell";
 import { verifiedBusiness } from "@/lib/content";
+import { Crumbs } from "@/components/thar-ui";
 export const metadata: Metadata = {
   title: "Enquiry privacy notice",
   robots: { index: false, follow: false },
@@ -8,8 +9,9 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <PlatformShell>
-      <article className="platform-wrap platform-section platform-privacy">
-        <h1>Enquiry privacy notice</h1>
+      <article className="tt-wrap tt-prose">
+        <Crumbs current="Privacy notice" />
+        <h1 className="tt-title">Enquiry privacy notice</h1>
         <p>
           <strong>Draft for owner review before public form activation.</strong>{" "}
           Thar Textiles uses the information you enter in an enquiry to review

@@ -1,11 +1,65 @@
 "use client";
 
-import { LinkArrow } from "./link-arrow";
 import { useMemo, useState } from "react";
-import { TextileImage } from "./textile-image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { catalogue } from "@/lib/platform";
+import { SearchIcon } from "./icons";
+import { ProductCard } from "./thar-ui";
+
+export const catalogueCategories = ["All", "Garments", "Bags", "Home textiles"];
+
+export function CatalogueTools({
+  query = "",
+  category = "All",
+  onQuery,
+  onCategory,
+  disabled = false,
+}: {
+  query?: string;
+  category?: string;
+  onQuery?: (value: string) => void;
+  onCategory?: (value: string) => void;
+  disabled?: boolean;
+}) {
+  return (
+    <div className="tt-filters">
+      <div
+        className="tt-filters__chips"
+        role="group"
+        aria-label="Filter by category"
+      >
+        {catalogueCategories.map((value) => (
+          <button
+            key={value}
+            type="button"
+            aria-pressed={category === value}
+            disabled={disabled}
+            onClick={() => onCategory?.(value)}
+          >
+            {value}
+            <span className="tt-filters__count">
+              {value === "All"
+                ? catalogue.length
+                : catalogue.filter((item) => item.category === value).length}
+            </span>
+          </button>
+        ))}
+      </div>
+      <label className="tt-search">
+        <span className="sr-only">Search the collection</span>
+        <SearchIcon className="tt-icon" />
+        <input
+          type="search"
+          value={query}
+          disabled={disabled}
+          onChange={(event) => onQuery?.(event.target.value)}
+          placeholder="Search the collection"
+        />
+      </label>
+    </div>
+  );
+}
 
 export function CatalogueSearch() {
   const [query, setQuery] = useState("");
@@ -14,9 +68,7 @@ export function CatalogueSearch() {
   const requested = params.get("category");
   const category =
     selectedCategory ??
-    (requested && ["Garments", "Bags", "Home textiles"].includes(requested)
-      ? requested
-      : "All");
+    (requested && catalogueCategories.includes(requested) ? requested : "All");
   const visible = useMemo(
     () =>
       catalogue.filter(
@@ -30,60 +82,27 @@ export function CatalogueSearch() {
   );
   return (
     <>
-      <div className="catalogue-tools">
-        <label>
-          Search the collection
-          <input
-            type="search"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Try bags, garments or wall hanging"
-          />
-        </label>
-        <label>
-          Category
-          <select
-            value={category}
-            onChange={(event) => setCategory(event.target.value)}
-          >
-            {["All", "Garments", "Bags", "Home textiles"].map((value) => (
-              <option key={value}>{value}</option>
-            ))}
-          </select>
-        </label>
-      </div>
-      <p className="catalogue-count" role="status">
+      <CatalogueTools
+        query={query}
+        category={category}
+        onQuery={setQuery}
+        onCategory={setCategory}
+      />
+      <p className="tt-count" role="status">
         {visible.length} {visible.length === 1 ? "piece" : "pieces"} shown
       </p>
-      <div className="platform-products">
+      <div className="tt-grid">
         {visible.map((item) => (
-          <article className="platform-product" key={item.slug}>
-            <Link href={`/shop/${item.slug}/`}>
-              <div className="platform-photo">
-                <TextileImage
-                  src={
-                    item.category === "Bags"
-                      ? "/images/editorial/bag-framed.jpeg"
-                      : item.image.replace(/^.*\/images/, "/images")
-                  }
-                  alt={item.imageAlt}
-                  sizes="(max-width: 767px) calc((100vw - 54px) / 2), (max-width: 1023px) calc((100vw - 116px) / 2), (max-width: 1512px) calc((100vw - 156px) / 4), 339px"
-                />
-              </div>
-              <div className="platform-product__meta">
-                <span>{item.category}</span>
-                <span>
-                  View piece <LinkArrow />
-                </span>
-              </div>
-              <h3>{item.title}</h3>
-              <p>Details and availability by enquiry</p>
-            </Link>
-          </article>
+          <ProductCard
+            key={item.slug}
+            item={item}
+            index={catalogue.indexOf(item)}
+            priority
+          />
         ))}
       </div>
       {visible.length === 0 && (
-        <p>
+        <p className="tt-empty">
           No pieces match that search. Try a category or{" "}
           <Link href="/contact/">contact the team</Link>.
         </p>
